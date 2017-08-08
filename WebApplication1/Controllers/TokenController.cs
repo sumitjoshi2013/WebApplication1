@@ -7,9 +7,12 @@ using System.Net.Http;
 using System.Security.Claims;
 using System.Web.Http;
 using Microsoft.IdentityModel.Tokens;
+using System.Web.Http.Cors;
 
 namespace WebApi.Jwt.Controllers
 {
+   // [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*", exposedHeaders: "X-Custom-Header", SupportsCredentials = true)]
+
     [AllowAnonymous]
     public class TokenController : ApiController
     {
