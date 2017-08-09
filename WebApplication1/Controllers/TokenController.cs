@@ -11,13 +11,14 @@ using System.Web.Http.Cors;
 
 namespace WebApi.Jwt.Controllers
 {
-   // [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*", exposedHeaders: "X-Custom-Header", SupportsCredentials = true)]
+   
 
     [AllowAnonymous]
     public class TokenController : ApiController
     {
         // THis is naive endpoint for demo, it should use Basic authentication to provdie token or POST request
         //MSSQLSERVER
+       // [EnableCors(origins: "*", headers: "*", methods: "*", SupportsCredentials = true)]
         public HttpResponseMessage Get(string username, string password)
         {
             if (CheckUser(username, password))
@@ -29,13 +30,14 @@ namespace WebApi.Jwt.Controllers
 
             throw new HttpResponseException(HttpStatusCode.Unauthorized);
         }
+      //  [EnableCors(origins: "*", headers: "*", methods: "*", SupportsCredentials = true)]
         [HttpPost]
-        public HttpResponseMessage Login(loginobject credentials)
+        public HttpResponseMessage Post(loginobject credentials)
         {
             string s = "a";
             if (CheckUser(credentials.email, credentials.password))
             {
-                var t = JwtManager.GenerateToken(credentials.email);
+                var t = "";// JwtManager.GenerateToken(credentials.email);
                 var response = Request.CreateResponse(HttpStatusCode.OK, t);
                 return response;
             }

@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http.Formatting;
+
 using System.Web.Http;
 using System.Web.Http.Cors;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
+using System.Net.Http.Formatting;
 
 namespace WebApi.Jwt
 {
@@ -15,15 +16,27 @@ namespace WebApi.Jwt
     {
         public static void Register(HttpConfiguration config)
         {
-            config.EnableCors();
-           // OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "yourdomain:yourpostnumber" });
+            //config.EnableCors();
+            OwinContext owinContext = new OwinContext();
+            
+             owinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "http://localhost:4200" });
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
-           // config.SuppressDefaultHostAuthentication();
-           // config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType)); 
+          //  config.SuppressDefaultHostAuthentication();
+          // config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
             // Web API configuration and services
-            config.Filters.Add(new AuthorizeAttribute());
+            //config.Filters.Add(new AuthorizeAttribute());
+            var cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
+
+            //OAuthOptions = new OAuthAuthorizationServerOptions
+            //{
+            //    TokenEndpointPath = new PathString("/Token"),
+            //    Provider = new ApplicationOAuthProvider(PublicClientKey),
+            //    AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
+            //    AllowInsecureHttp = true
+            //};
 
             // Web API routes
             config.MapHttpAttributeRoutes();
@@ -34,9 +47,9 @@ namespace WebApi.Jwt
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            config.Formatters.JsonFormatter.SerializerSettings.NullValueHandling = NullValueHandling.Include;
-            var jsonpFormatter = new JsonMediaTypeFormatter();
-            config.Formatters.Add(jsonpFormatter);
+          //  config.Formatters.JsonFormatter.SerializerSettings.NullValueHandling = NullValueHandling.Include;
+         
+
         }
     }
 }

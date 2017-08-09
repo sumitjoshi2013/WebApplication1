@@ -12,7 +12,7 @@ namespace WebApi.Jwt.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ValueController : ApiController
     {
-        [JwtAuthentication]
+       // [JwtAuthentication]
         public string Get()
         {
             return "value";
