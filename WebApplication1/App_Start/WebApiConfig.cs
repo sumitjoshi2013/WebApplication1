@@ -17,9 +17,9 @@ namespace WebApi.Jwt
         public static void Register(HttpConfiguration config)
         {
             //config.EnableCors();
-            OwinContext owinContext = new OwinContext();
+           // OwinContext owinContext = new OwinContext();
             
-             owinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "http://localhost:4200" });
+            // owinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "http://localhost:4200" });
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
           //  config.SuppressDefaultHostAuthentication();
