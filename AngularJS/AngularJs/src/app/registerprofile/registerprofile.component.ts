@@ -87,7 +87,8 @@ export class RegisterprofileComponent implements OnInit {
   zip: new FormControl('', Validators.required),
   about: new FormControl('', Validators.required),
   mySubCaste: new FormControl('', Validators.required),
-  recaptcha:  new FormControl('', Validators.required)
+  recaptcha:  new FormControl('', Validators.required),
+  mySocialProfile: new FormControl('')
 });
    open() {
         this.datePicker.api.open();
@@ -360,6 +361,10 @@ export class RegisterprofileComponent implements OnInit {
  get recaptcha()
  {
   return this.myform.get("recaptcha");
+ }
+get mySocialProfile()
+ {
+  return this.myform.get("mySocialProfile");
  }
 
    onSubmit(data: any) {

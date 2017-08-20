@@ -26,7 +26,8 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <ApplicationInsightsResourceId>/subscriptions/760f80e8-c173-4335-b29c-c30ca8ae9432/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/AngularJS</ApplicationInsightsResourceId>
-    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>2.3</TypeScriptToolsVersion>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,77 +47,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.0.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.0.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.0.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.AI.Web, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.0.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.AI.WindowsServer, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.0.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.ApplicationInsights, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.2.0.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Web.DynamicData" />
-    <Reference Include="System.Web.Entity" />
-    <Reference Include="System.Web.ApplicationServices" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Web.Services" />
-    <Reference Include="System.EnterpriseServices" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Service References\Application Insights\ConnectedService.json" />
-    <Content Include="AngularJs\.angular-cli.json" />
-    <Content Include="AngularJs\.DS_Store" />
-    <Content Include="AngularJs\.editorconfig" />
-    <Content Include="AngularJs\e2e\tsconfig.e2e.json" />
-    <Content Include="AngularJs\package-lock.json" />
-    <Content Include="AngularJs\package.json" />
-    <Content Include="AngularJs\README.md" />
-    <Content Include="AngularJs\src\app\home\menu.json" />
-    <Content Include="AngularJs\src\app\npm-debug.log" />
-    <Content Include="AngularJs\src\assets\.gitkeep" />
-    <Content Include="AngularJs\src\tsconfig.app.json" />
-    <Content Include="AngularJs\src\tsconfig.spec.json" />
-    <Content Include="AngularJs\tsconfig.json" />
-    <Content Include="AngularJs\tslint.json" />
-    <Content Include="AngularJs\UK-info" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -125,54 +60,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AngularJs\.gitignore" />
-    <Content Include="AngularJs\karma.conf.js" />
-    <Content Include="AngularJs\protractor.conf.js" />
-    <Content Include="AngularJs\src\app\accountinformation\accountinformation.component.html" />
-    <Content Include="AngularJs\src\app\admin\admin.component.css" />
-    <Content Include="AngularJs\src\app\admin\admin.component.html" />
-    <Content Include="AngularJs\src\app\app.component.css" />
-    <Content Include="AngularJs\src\app\app.component.html" />
-    <Content Include="AngularJs\src\app\basicinformation\basicinformation.component.html" />
-    <Content Include="AngularJs\src\app\fileupload\fileupload.component.html" />
-    <Content Include="AngularJs\src\app\forgetprofile\forgetprofile.component.html" />
-    <Content Include="AngularJs\src\app\googlerecaptcha\googlerecaptcha.component.html" />
-    <Content Include="AngularJs\src\app\header\header.component.css" />
-    <Content Include="AngularJs\src\app\header\header.component.html" />
-    <Content Include="AngularJs\src\app\home\home.component.css" />
-    <Content Include="AngularJs\src\app\home\home.component.html" />
-    <Content Include="AngularJs\src\app\imagegallery\imagegallery.component.html" />
-    <Content Include="AngularJs\src\app\login\login.component.css" />
-    <Content Include="AngularJs\src\app\login\login.component.html" />
-    <Content Include="AngularJs\src\app\multiauthentication\multiauthentication.component.css" />
-    <Content Include="AngularJs\src\app\multiauthentication\multiauthentication.component.html" />
-    <Content Include="AngularJs\src\app\no-access\no-access.component.css" />
-    <Content Include="AngularJs\src\app\no-access\no-access.component.html" />
-    <Content Include="AngularJs\src\app\not-found\not-found.component.css" />
-    <Content Include="AngularJs\src\app\not-found\not-found.component.html" />
-    <Content Include="AngularJs\src\app\otherinformations\otherinformations.component.html" />
-    <Content Include="AngularJs\src\app\profiledetail\profiledetail.component.css" />
-    <Content Include="AngularJs\src\app\profiledetail\profiledetail.component.html" />
-    <Content Include="AngularJs\src\app\profilelist\profilelist.component.css" />
-    <Content Include="AngularJs\src\app\profilelist\profilelist.component.html" />
-    <Content Include="AngularJs\src\app\registerprofile\backup.html" />
-    <Content Include="AngularJs\src\app\registerprofile\registerprofile.component.css" />
-    <Content Include="AngularJs\src\app\registerprofile\registerprofile.component.html" />
-    <Content Include="AngularJs\src\app\registerprofile\terms.html" />
-    <Content Include="AngularJs\src\app\registerprofile\working.html" />
-    <Content Include="AngularJs\src\app\registration-thanks\registration-thanks.component.html" />
-    <Content Include="AngularJs\src\app\residentialinformation\residentialinformation.component.html" />
-    <Content Include="AngularJs\src\app\searchprofile\searchprofile.component.css" />
-    <Content Include="AngularJs\src\app\searchprofile\searchprofile.component.html" />
-    <Content Include="AngularJs\src\app\signup\signup.component.css" />
-    <Content Include="AngularJs\src\app\signup\signup.component.html" />
-    <Content Include="AngularJs\src\favicon.ico" />
-    <Content Include="AngularJs\src\images\IMG_20170602_133107.jpg" />
-    <Content Include="AngularJs\src\images\IMG_20170626_080941.jpg" />
-    <Content Include="AngularJs\src\images\IMG_20170626_080945.jpg" />
-    <Content Include="AngularJs\src\images\IMG_20170626_081205.jpg" />
-    <Content Include="AngularJs\src\index.html" />
-    <Content Include="AngularJs\src\styles.css" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Web.config" />
@@ -185,76 +72,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="AngularJs\e2e\app.e2e-spec.ts" />
-    <TypeScriptCompile Include="AngularJs\e2e\app.po.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\accountinformation\accountinformation.component.spec.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\accountinformation\accountinformation.component.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\admin-auth-guard.service.spec.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\admin-auth-guard.service.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\admin\admin.component.spec.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\admin\admin.component.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\app.component.spec.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\app.component.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\app.module.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\auth-guard.service.spec.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\auth-guard.service.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\basicinformation\basicinformation.component.spec.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\basicinformation\basicinformation.component.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\common\app-error-handler.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\common\app-error.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\common\bad-input.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\common\dropdown.required.directive.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\common\not-found-error.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\fileupload\fileupload.component.spec.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\fileupload\fileupload.component.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\forgetprofile\forgetprofile.component.spec.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\forgetprofile\forgetprofile.component.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\googlerecaptcha\googlerecaptcha.component.spec.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\googlerecaptcha\googlerecaptcha.component.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\header\header.component.spec.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\header\header.component.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\helpers\fake-backend.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\home\home.component.spec.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\home\home.component.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\imagegallery\imagegallery.component.spec.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\imagegallery\imagegallery.component.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\login\login.component.spec.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\login\login.component.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\multiauthentication\multiauthentication.component.spec.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\multiauthentication\multiauthentication.component.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\no-access\no-access.component.spec.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\no-access\no-access.component.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\not-found\not-found.component.spec.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\not-found\not-found.component.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\otherinformations\otherinformations.component.spec.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\otherinformations\otherinformations.component.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\profiledetail\profiledetail.component.spec.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\profiledetail\profiledetail.component.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\profilelist\profilelist.component.spec.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\profilelist\profilelist.component.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\registerprofile\password.match.directive.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\registerprofile\registerprofile.component.spec.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\registerprofile\registerprofile.component.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\registration-thanks\registration-thanks.component.spec.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\registration-thanks\registration-thanks.component.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\residentialinformation\residentialinformation.component.spec.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\residentialinformation\residentialinformation.component.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\searchprofile\searchprofile.component.spec.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\searchprofile\searchprofile.component.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\services\auth.service.spec.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\services\auth.service.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\services\order.service.spec.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\services\order.service.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\signup\signup.component.spec.ts" />
-    <TypeScriptCompile Include="AngularJs\src\app\signup\signup.component.ts" />
-    <TypeScriptCompile Include="AngularJs\src\environments\environment.prod.ts" />
-    <TypeScriptCompile Include="AngularJs\src\environments\environment.ts" />
-    <TypeScriptCompile Include="AngularJs\src\main.ts" />
-    <TypeScriptCompile Include="AngularJs\src\polyfills.ts" />
-    <TypeScriptCompile Include="AngularJs\src\test.ts" />
-    <TypeScriptCompile Include="AngularJs\src\typings.d.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

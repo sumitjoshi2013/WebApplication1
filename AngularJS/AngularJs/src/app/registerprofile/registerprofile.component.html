@@ -211,19 +211,19 @@ http://valor-software.com/ngx-bootstrap/index-bs4.html#/alerts
         <div class="col-md-6  inputGroupContainer">
           <div formGroupName="time" class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
 
-            <select required name="hh"  formControlName="hh"   class="selectpicker" data-style="btn-primary" >
+            <select required name="hh"  formControlName="hh" style="height:30px"   class="selectpicker" data-style="btn-primary" >
                 <option *ngFor="let object of timeobj; let index = index" value= "{{index}}">
                   {{index}} hr
                 </option>
               </select>
             :
-            <select required name="min"  formControlName="min"  class="selectpicker" data-style="btn-primary" >
+            <select required name="min"  formControlName="min" style="height:30px"  class="selectpicker" data-style="btn-primary" >
                 <option *ngFor="let object of minobj; let index = index" value= "{{index}}">
                   {{index}} min
                 </option>
               </select>
               :
-              <select required name="sec"  formControlName="sec" class="selectpicker" data-style="btn-primary"  >
+              <select required name="sec"  formControlName="sec" style="height:30px" class="selectpicker" data-style="btn-primary"  >
                   <option *ngFor="let object of minobj; let index = index" value= "{{index}}">
                     {{index}} sec
                   </option>
@@ -414,7 +414,30 @@ http://valor-software.com/ngx-bootstrap/index-bs4.html#/alerts
       </div>
           </div>
 
+           
+
             <div class="form-group">
+        <label class="col-md-4 control-label">My Rashi*</label>
+      <div class="col-md-6 selectContainer">
+          <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+              <select required name="rashi" formControlName="rashi"  class="ui fluid search selection dropdown" >
+              <option *ngFor="let item of rashiStatusList;" value= {{item.id}} >{{item.name}}</option>
+            </select>
+          </div>
+
+
+        <div *ngIf="rashi.errors && (rashi.dirty || rashi.touched)">
+          <div *ngIf="rashi.errors.required">
+          <div class="alert-warning">
+         <strong>Warning!</strong> Please select the mother tounge. 
+        </div>
+      </div>
+      </div>
+
+      </div>
+  </div>
+
+ <div class="form-group">
         <label class="col-md-4 control-label">My Sub Caste*</label>
         <div class="col-md-6 selectContainer">
           <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
@@ -445,26 +468,6 @@ http://valor-software.com/ngx-bootstrap/index-bs4.html#/alerts
           </div>
 
 
-            <div class="form-group">
-        <label class="col-md-4 control-label">My Rashi*</label>
-      <div class="col-md-6 selectContainer">
-          <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-              <select required name="rashi" formControlName="rashi"  class="ui fluid search selection dropdown" >
-              <option *ngFor="let item of rashiStatusList;" value= {{item.id}} >{{item.name}}</option>
-            </select>
-          </div>
-
-
-        <div *ngIf="rashi.errors && (rashi.dirty || rashi.touched)">
-          <div *ngIf="rashi.errors.required">
-          <div class="alert-warning">
-         <strong>Warning!</strong> Please select the mother tounge. 
-        </div>
-      </div>
-      </div>
-
-      </div>
-  </div>
 
         <div class="form-group">
         <label class="col-md-4 control-label">About my Education</label>
@@ -504,6 +507,17 @@ http://valor-software.com/ngx-bootstrap/index-bs4.html#/alerts
 
         </div>
       </div>
+
+
+      
+ <div class="form-group">
+        <label class="col-md-4 control-label">My Social Networking Link</label>
+        <div class="col-md-6 selectContainer">
+          <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+           <input name="mySocialProfile" formControlName="mySocialProfile" placeholder="for eg facebook link, linkedin..." class="form-control"  type="text">
+          </div>
+      </div>
+          </div>
 
     </fieldset>
 

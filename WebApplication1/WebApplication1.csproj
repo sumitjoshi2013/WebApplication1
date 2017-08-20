@@ -239,7 +239,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="JwtManager.cs" />
-    <Compile Include="Middlewares\GlobalExceptionMiddleware.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -299,6 +298,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Middlewares\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

@@ -9,7 +9,7 @@ using System.Web.Http.Cors;
 
 namespace WebApplication1.Controllers
 {
-   // [EnableCors(origins: "*", headers: "*", methods: "*")]
+   [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class FileuploadController : ApiController
     {
         // GET api/values
