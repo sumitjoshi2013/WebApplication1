@@ -19,7 +19,7 @@ class SearchItem {
 export class AuthService 
 {
   currentUser: any; 
-apiRoot: string = 'http://localhost:32123/api/Token';
+apiRoot: string = 'http://localhost:6284/api/Token';
 
   constructor(private http: Http, private jsonp: Jsonp) 
   {
@@ -78,7 +78,8 @@ params1.set('callback', "JSONP_CALLBACK");
     
     let user = credentials.email;
      let password = credentials.password;
-     let _InstUrl = "http://localhost/ClientApi/api/Token?username="+user+"&password="+password+""; 
+    // console.log(credentials);
+     let _InstUrl = "http://localhost:6284/api/Token?username="+user+"&password="+password+""; 
     //console.log(_InstUrl);
 let data = JSON.stringify(credentials); //[{"email": "sumit.joshi"}, {"password": "pwd"}];
 
@@ -87,14 +88,15 @@ let data = JSON.stringify(credentials); //[{"email": "sumit.joshi"}, {"password"
       return this.http.get(_InstUrl,  options)
           .map(res =>{
             let result = res.json()           
-          //console.log(result)
+         // console.log(result);
           //
             if (result) {
                 localStorage.setItem('token', result);
-                console.log("result: " + result);
+               // console.log("result: " + result);
                 let jwt = new JwtHelper();
                 this.currentUser = jwt.decodeToken(localStorage.getItem('token'));
-                console.log("currentUser: " + this.currentUser);
+             //   console.log("currentUser: " + localStorage.getItem('token'));
+                console.log("currentUser email: " + this.currentUser.name);
                 return true; 
                     }
             else

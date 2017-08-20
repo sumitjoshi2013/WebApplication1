@@ -15,7 +15,7 @@ export class HomeComponent {
   constructor(private authService: AuthService) 
   {
 
-    let cuser = authService.currentUser;
+    let cuser = this.authService.currentUser.name;
     console.log(cuser);
    }
 
