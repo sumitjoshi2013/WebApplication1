@@ -39,7 +39,7 @@ import { RecaptchaModule } from 'ng-recaptcha';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 import {DpDatePickerModule} from 'ng2-date-picker';
 import {MyDatePickerModule } from 'mydatepicker/src/my-date-picker';
-import { EqualValidator } from './registerprofile//password.match.directive';
+import { EqualValidator } from './common/password.match.directive';
 import { DropdownRequired } from './common/dropdown.required.directive';
 import { ProfilelistComponent } from './profilelist/profilelist.component';
 import {MdGridListModule} from '@angular/material';
