@@ -2,3 +2,20 @@
 <p>
   deletepic works!
 </p>
+
+<ul>
+    <li *ngFor="let item of images">
+       {{item.id}} 
+       <img class="rounded-circle" 
+       src= {{item.src}}
+       alt="Photo gallery" style="width:200px;height:200px">
+      
+       {{item.text}}
+       
+       <button (click)="delPics('+{{item.id}}+')" type="submit" 
+       class="btn btn-warning"> Back 
+        <span class="glyphicon glyphicon-send"></span>
+      </button>
+
+    </li>
+ </ul>
