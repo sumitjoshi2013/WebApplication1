@@ -1,49 +1,75 @@
 //http://valor-software.com/ng2-file-upload/
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
-import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
-import { FileUploader } from 'ng2-file-upload';
-import { JsonpModule, Jsonp, Response, Http,Headers, RequestOptions, RequestMethod } from '@angular/http';
+//https://plnkr.co/edit/hQ6RtzCfPosfQl4HlbZQ?p=preview
+import { Component } from '@angular/core'; 
+import { Headers, Http, RequestOptions } from '@angular/http'; 
+ 
+import { NgForm } from '@angular/forms'; 
+import './fileupload.js'
 //const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
+
 @Component({
   selector: 'app-fileupload',
-  templateUrl: './fileupload.component.html'
+  templateUrl: './fileupload.component.html',
+  styleUrls: ['./fileupload.component.css']
+  
 })
-export class FileuploadComponent implements OnInit {
-  // public uploader: FileUploader;
-
-  public headers = new Headers({'Content-Type':'multipart/form-data'});
-  public options = new RequestOptions({ headers: this.headers, method: "post"});
-
-
-
-
-  uploader: FileUploader = new FileUploader({
-     url: "http://localhost/apicall/api/Fileupload/",
-         isHTML5: true//,
-   //headers: [{ name: 'foofoo', value: 'passengerslivesmatter' }]
-    //console.log("hello");
-  });
-  
-
-//public uploader:FileUploader = new FileUploader({url:'http://localhost:32123/api/Fileupload/', allowedFileType: ["pdf"]});
-
-//  public uploader1:FileUploader = new FileUploader({url:'http://localhost:32123/api/Fileupload/', allowedFileType: ["pdf"] });
-
-  //public ploader1:FileUploader = new FileUploader({url:'http://localhost:32123/api/Fileupload/', allowedFileType: ["pdf"], headers: <Headers[]>[  //{ name: 'Content-Type', value: 'application/json' }           { name: 'Content-Type', value: 'multipart/form-data' }        ]    });
-
-
-
-    uploadAll()
-    {
-    //  this.uploader.setOptions(this.options);
-        console.log("test: " + FileUploader.name);
-
+export class FileuploadComponent {
+    files: FileList; 
+    filestring: string; 
+    constructor(public http: Http) { 
+    } 
+    getFiles(event) { 
+        this.files = event.target.files; 
+        var reader = new FileReader(); 
+        reader.onload = this._handleReaderLoaded.bind(this); 
+        reader.readAsBinaryString(this.files[0]); 
+    } 
+ 
+    _handleReaderLoaded(readerEvt) { 
+        var binaryString = readerEvt.target.result; 
+        this.filestring = btoa(binaryString);  // Converting binary string data. 
+   } 
+    logForm(form: NgForm) { 
+        console.log("Name: " + form.name + "Files: " + this.files[0].name); 
+        
+        
+       // this.sendValues(form.name, form.password); 
+    } 
+    sendValues(name, password) { 
+        let headers = new Headers({ 'Content-Type': 'application/json' }); 
+        let options = new RequestOptions({ headers: headers }); 
+        this.http.post('server-url', JSON.stringify({ Username: name, FileData: this.filestring }), options).               // http post method to sending data 
+            subscribe( 
+            (data) => { 
+                console.log('Response received'); 
+            }, 
+            (err) => { console.log(err); }, 
+            () => console.log('Authentication Complete') 
+            ); 
     }
-  constructor(private http: Http) { }
+    
 
-  ngOnInit() {
-  }
+    images = [
+        {
+          src: 'http://localhost/images/IMG_20170602_133107.jpg',
+          text: 'City Sunset View'
+        },
+        {
+          src: 'http://localhost/images/IMG_20170626_080941.jpg',
+          text: 'Mountain'
+        },
+        {
+          src: 'http://localhost/images/IMG_20170626_080945.jpg',
+          text: 'Peacock'
+        },
+        {
+          src: 'http://localhost/images/IMG_20170626_081205.jpg',
+          text: 'Fire'
+        },
+        {
+          src: 'http://localhost/images/IMG_20170602_133107.jpg',
+          text: 'Nature'
+        }
+      ];
 
-  
-}
+} 

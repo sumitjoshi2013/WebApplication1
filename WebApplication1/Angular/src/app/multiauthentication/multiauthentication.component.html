@@ -2,6 +2,8 @@
 <br>
 <br><br>
  <div class="container">
+    <form class="form-signin" #f="ngForm" (ngSubmit)="gotoDashBoard(f.value)">
+        
             <div class="panel panel-primary" style="width:750px;margin:0px auto">
               <div class="panel-heading">
                 Please check your mail id and fill the OTP number generated from the application for further proceedings!!!
@@ -30,12 +32,12 @@
             <span class="glyphicon glyphicon-send"></span>
           </button>
 
-           <button (click)="gotoLogin()" type="submit" class="btn btn-warning" >Back 
+           <button (click)="gotoDashBoard()" type="submit" class="btn btn-warning" >Back 
             <span class="glyphicon glyphicon-send"></span>
           </button>
         </div>
       </div>
       </div>
-
+            </div></form>
 </div>
 

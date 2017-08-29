@@ -10,9 +10,9 @@ export class MultiauthenticationComponent implements OnInit {
 
   ngOnInit() {
   }
-    gotoLogin()
+  gotoDashBoard()
     {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/']);
 
     }
 }

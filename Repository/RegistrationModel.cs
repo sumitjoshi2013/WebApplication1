@@ -19,22 +19,23 @@ namespace Repository
 
     public class date
     {
-        public int year { get; set; }
-        public int month { get; set; }
-        public int day { get; set; }
+        public string year { get; set; }
+        public string month { get; set; }
+        public string day { get; set; }
 
     }
 
     public class time
     {
-        public int hh { get; set; }
-        public int mim { get; set; }
-        public int sec { get; set; }
+        public string hh { get; set; }
+        public string min { get; set; }
+        public string sec { get; set; }
 
     }
 
     public class RegistrationModel
     {
+        public string USER_ID { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
         public string landline { get; set; }
@@ -68,6 +69,10 @@ namespace Repository
         public string mySubCaste { get; set; }
         public string recaptcha { get; set; }
 
+        public string email { get; set; }
+        public string nativeplace { get; set; }
+
+        public string mobile { get; set; }
         public string JsonRawData { get; set; }
 
     }

@@ -39,13 +39,17 @@ import { RecaptchaModule } from 'ng-recaptcha';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 import {DpDatePickerModule} from 'ng2-date-picker';
 import {MyDatePickerModule } from 'mydatepicker/src/my-date-picker';
-import { EqualValidator } from './registerprofile//password.match.directive';
+import { EqualValidator } from './common/password.match.directive';
 import { DropdownRequired } from './common/dropdown.required.directive';
 import { ProfilelistComponent } from './profilelist/profilelist.component';
 import {MdGridListModule} from '@angular/material';
 import { MaterialModule } from '@angular/material';
 import { ProfiledetailComponent } from './profiledetail/profiledetail.component';
-
+import { DeletepicComponent } from './deletepic/deletepic.component';
+import { EditprofileComponent } from './editprofile/editprofile.component';
+import { ContactusComponent } from './contactus/contactus.component';
+import { OurvisionComponent } from './ourvision/ourvision.component';
+import 'hammerjs';
 
 export function getAuthHttp(http) {
   return new AuthHttp(new AuthConfig({
@@ -59,7 +63,7 @@ export function getAuthHttp(http) {
     "width": "900px",
     "height": "600px"
   },
-  "animation": "fade",
+  "animation": "none",
   "loader": {
     "width": "50px",
     "height": "50px",
@@ -68,22 +72,28 @@ export function getAuthHttp(http) {
   },
   "description": {
     "position": "bottom",
-    "overlay": false,
+    "overlay": true,
     "text": true,
-    "counter": true
+    "counter": true,
+    "style": {
+      "background": "rgba(0,0,0, 0.5)"
+    }
   },
-  "bullets": false,
+  "navigation": true,
+  "bullets": {
+    "position": "top"
+  },
   "player": {
-    "autoplay": false,
+    "autoplay": true,
     "speed": 3000
   },
   "thumbnails": {
-    "width": 120,
-    "height": 90,
-    "position": "top",
-    "space": 20
+    "width": 10,
+    "height": 10,
+    "position": "bottom",
+    "space": 10
   },
-  "navigation": true
+  "gestures": true
   }
   
 
@@ -116,7 +126,11 @@ export function getAuthHttp(http) {
     EqualValidator,
     DropdownRequired,
     ProfilelistComponent,
-    ProfiledetailComponent
+    ProfiledetailComponent,
+    DeletepicComponent,
+    EditprofileComponent,
+    ContactusComponent,
+    OurvisionComponent
   ],
   imports: [
     MaterialModule,
@@ -145,6 +159,10 @@ export function getAuthHttp(http) {
       { path: 'Fileupload', component: FileuploadComponent },
       { path: 'profilelist', component: ProfilelistComponent },
       { path: 'profiledetail', component: ProfiledetailComponent },
+      { path: 'contactus', component: ContactusComponent },
+      { path: 'vision', component: OurvisionComponent },
+      { path: 'deletepic', component: DeletepicComponent },
+      { path: 'editprofile', component: EditprofileComponent },
 
     ],{ useHash: true })
   ],

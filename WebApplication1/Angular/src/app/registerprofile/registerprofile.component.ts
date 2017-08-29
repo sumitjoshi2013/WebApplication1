@@ -87,7 +87,8 @@ export class RegisterprofileComponent implements OnInit {
   zip: new FormControl('', Validators.required),
   about: new FormControl('', Validators.required),
   mySubCaste: new FormControl('', Validators.required),
-  recaptcha:  new FormControl('', Validators.required)
+  recaptcha:  new FormControl('', Validators.required),
+  mySocialProfile: new FormControl('')
 });
    open() {
         this.datePicker.api.open();
@@ -361,11 +362,15 @@ export class RegisterprofileComponent implements OnInit {
  {
   return this.myform.get("recaptcha");
  }
+get mySocialProfile()
+ {
+  return this.myform.get("mySocialProfile");
+ }
 
    onSubmit(data: any) {
     //console.log("Form Submitted!");
      // console.log("Form Submitted!" + JSON.stringify(this.myform.value));
-      let url1 = "http://localhost:8910/Api/api/Registration";
+      let url1 = "http://mynewservicesumit.azurewebsites.net/Api/api/Registration";
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       headers.append('Accept', 'application/json');

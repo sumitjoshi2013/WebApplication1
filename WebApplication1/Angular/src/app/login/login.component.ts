@@ -25,12 +25,12 @@ public formModel: FormModel = {};
     private authService: AuthService) { }
 
     signIn(credentials) {
-    console.log(credentials["captcha"]);
+   // console.log(credentials);
   if (this.form.valid) {
 
     this.authService.login(credentials)
-    
     .subscribe(result => { 
+      
         if (result)
           this.router.navigate(['/multiauth']);
         else  
