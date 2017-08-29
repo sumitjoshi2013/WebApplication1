@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 
 namespace Repository
 {
@@ -58,7 +59,6 @@ namespace Repository
             para.Add("@SHOW_MOBILE_NO1", "" );
             para.Add("@MARITIAL_STATUS", registrationModel.maritalstatus );
             para.Add("@ABOUT_ME", registrationModel.about );
-
             para.Add("@ABOUT_MY_FAMILY", "");
             para.Add("@ABOUT_MY_EDUCATION", registrationModel.education );
             para.Add("@ABOUT_MY_PROFESSION", registrationModel.profession );
@@ -70,8 +70,6 @@ namespace Repository
             para.Add("@NO_OF_BROTHERS", "");
             para.Add("@MARRIED_BROTHERS", "");
             para.Add("@NO_OF_SISTERS", "");
-
-
             para.Add("@MARRIED_SISTERS", "" );
             para.Add("@MY_HIGHEST_DEGREE", registrationModel.education );
             para.Add("@MY_OCCUPTION", registrationModel.profession );
@@ -95,9 +93,10 @@ namespace Repository
             para.Add("@MODIFIED_BY", "" );
             para.Add("@STATUS", 1);
 
-           // para.Add("@Result", dbType: DbType.Int32, direction: ParameterDirection.Output, size: 3registrationModel. );
+            var json = new JavaScriptSerializer().Serialize(registrationModel);
+            para.Add("@JSONObject", json);
 
-            sqlHelper.ExecuteSp("NewInsertCommand", para, null, true, null);
+            sqlHelper.ExecuteSp("InsertProfile", para, null, true, null);
             //int valueout = para.Get<int>("@outresult");
             return 1;
 
@@ -165,7 +164,7 @@ namespace Repository
             }
 
         }
-        */
+       
 
         public int Update(RegistrationModel registrationModel, string conn)
         {
@@ -176,13 +175,25 @@ namespace Repository
                 return rowsAffected;
             }
         }
-
-        public List<RegistrationModel> Read(string conn)
+ */
+        public List<GetRegistrationModel> GetProfiles(string conn)
         {
             using (IDbConnection db = new SqlConnection(conn))
             {
-                string readSp = "GetAllAuthors";
-                return db.Query<RegistrationModel>(readSp, commandType: CommandType.StoredProcedure).ToList();
+                string readSp = "GetProfiles";
+                return db.Query<GetRegistrationModel>(readSp, commandType: CommandType.StoredProcedure).ToList();
+            }
+        }
+
+        public GetRegistrationModel GetProfileById(string conn, string Id)
+        {
+            using (IDbConnection db = new SqlConnection(conn))
+            {
+                string readSp = "GetProfileById";
+                var para = new DynamicParameters();
+                para.Add("@USER_PEROFILE_ID", Id);
+                var data = db.Query<GetRegistrationModel>(readSp, para, commandType: CommandType.StoredProcedure).SingleOrDefault();
+                return data;
             }
         }
     }

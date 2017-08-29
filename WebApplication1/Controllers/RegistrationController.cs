@@ -20,9 +20,11 @@ namespace WebApplication1.Controllers
         }
 
         // GET: api/Registration/5
-        public string Get(int id)
+        public GetRegistrationModel Get(string id)
         {
-            return "value";
+            string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
+            Crud_UserProfile repository = new Crud_UserProfile();
+            return repository.GetProfileById(con, id);
         }
 
         // POST: api/Registration

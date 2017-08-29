@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 
 namespace Repository
 {
@@ -35,7 +36,7 @@ namespace Repository
 
     public class RegistrationModel
     {
-        public string USER_ID { get; set; }
+        public object USER_ID { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
         public string landline { get; set; }
@@ -74,6 +75,18 @@ namespace Repository
 
         public string mobile { get; set; }
         public string JsonRawData { get; set; }
+
+        public int USER_PEROFILE_ID { get; set; }
+
+    }
+
+    public class GetRegistrationModel
+    {
+        public object USER_ID { get; set; }
+
+        public string JsonRawData { get; set; }
+
+        public int USER_PEROFILE_ID { get; set; }
 
     }
 }
