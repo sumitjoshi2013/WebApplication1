@@ -14,9 +14,11 @@ namespace WebApplication1.Controllers
     public class RegistrationController : ApiController
     {
         // GET: api/Registration
-        public IEnumerable<string> Get()
+        public IEnumerable<GetRegistrationModel> Get()
         {
-            return new string[] { "value1", "value2" };
+            string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
+            Crud_UserProfile repository = new Crud_UserProfile();
+            return repository.GetProfiles(con);
         }
 
         // GET: api/Registration/5
@@ -28,15 +30,12 @@ namespace WebApplication1.Controllers
         }
 
         // POST: api/Registration
-        public void Post(RegistrationModel value)
+        public string Post(RegistrationModel value)
         {
             var data = value;
-
             string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
             Crud_UserProfile repository = new Crud_UserProfile();
-            repository.Insert(con, data);
-
-
+            return repository.Insert(con, data);
         }
 
         // PUT: api/Registration/5
