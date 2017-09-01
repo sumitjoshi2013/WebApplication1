@@ -9,6 +9,8 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using System.Net.Http.Formatting;
+using System.Web.Http.ExceptionHandling;
+using WebApplication1.Utility;
 
 namespace WebApi.Jwt
 {
@@ -29,7 +31,7 @@ namespace WebApi.Jwt
             //config.Filters.Add(new AuthorizeAttribute());
             var cors = new EnableCorsAttribute("*", "*", "*");
             config.EnableCors(cors);
-
+            config.Services.Replace(typeof(IExceptionHandler), new GlobalExceptionHandler());
             //OAuthOptions = new OAuthAuthorizationServerOptions
             //{
             //    TokenEndpointPath = new PathString("/Token"),
