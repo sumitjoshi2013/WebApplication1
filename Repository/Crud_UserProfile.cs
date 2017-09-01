@@ -13,15 +13,8 @@ namespace Repository
 {
     public class Crud_UserProfile
     {
-        public List<RegistrationModel> ReadAll(string conn)
-        {
-            using (IDbConnection db = new SqlConnection(conn))
-            {
-                return db.Query<RegistrationModel>("Select * From Author").ToList();
-            }
-        }
-
-        public string Insert(string conn, RegistrationModel registrationModel)
+       
+        public string InsertUserProfile(string conn, RegistrationModel registrationModel)
         {
             string msg = string.Empty;
             SqlHelper sqlHelper = new SqlHelper(conn);
@@ -135,6 +128,53 @@ namespace Repository
                 var data = db.Query<GetRegistrationModel>(readSp, para, commandType: CommandType.StoredProcedure).SingleOrDefault();
                 return data;
             }
+        }
+
+        public GetLoginInfo GetUserLoginInfo(string conn, string uid, string pwd)
+        {
+            using (IDbConnection db = new SqlConnection(conn))
+            {
+                string readSp = "GetLogin";
+                var para = new DynamicParameters();
+                para.Add("@UK_useremailid", uid);
+                para.Add("@UK_PASSWORD", pwd);
+                var data = db.Query<GetLoginInfo>(readSp, para, commandType: CommandType.StoredProcedure).SingleOrDefault();
+                return data;
+            }
+        }
+
+
+        public string InsertUserProfilePics(string conn, UserPics userPics)
+        {
+            string msg = string.Empty;
+            SqlHelper sqlHelper = new SqlHelper(conn);
+            var para = new DynamicParameters();
+            var outPut = new DynamicParameters();
+            try
+            {
+                para.Add("@USER_ID", userPics.USER_ID);
+                para.Add("@PicName", userPics.PicName);
+                para.Add("@PicFolderPath", userPics.PicFolderPath);
+                para.Add("@PicFilePath", userPics.PicFilePath);
+                para.Add("@CREATED_BY", userPics.CreatedBy);
+                var json = new JavaScriptSerializer().Serialize(userPics);
+                para.Add("@JsonRawData", json);
+            }
+            catch (Exception exp)
+            {
+                msg = "Error :" + exp.Message;
+            }
+            try
+            {
+                sqlHelper.ExecuteSp("InsertUserPics", para, null, true, null);
+                msg = "Successfully Inserted Pics.";
+            }
+            catch (Exception exp)
+            {
+                msg = "Error :" + exp.Message;
+            }
+            //int valueout = para.Get<int>("@outresult");
+            return msg;
         }
     }
 }

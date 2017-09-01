@@ -80,6 +80,21 @@ namespace Repository
 
     }
 
+    public class UserPics
+    {
+        public string @USER_ID { get; set; }
+
+        public string @PicName { get; set; }
+
+        public string @PicFolderPath { get; set; }
+
+        public string @PicFilePath { get; set; }
+
+        public string @CreatedBy { get; set; }
+        public string JsonRawData { get; set; }
+
+
+    }
     public class GetRegistrationModel
     {
         public object USER_ID { get; set; }
@@ -89,4 +104,12 @@ namespace Repository
         public int USER_PEROFILE_ID { get; set; }
 
     }
+
+    public class GetLoginInfo
+    {
+        public object Code { get; set; }
+        public string email { get; set; }
+        public string password { get; set; }
+    }
+
 }

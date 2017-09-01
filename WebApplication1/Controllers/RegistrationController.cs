@@ -35,7 +35,7 @@ namespace WebApplication1.Controllers
             var data = value;
             string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
             Crud_UserProfile repository = new Crud_UserProfile();
-            return repository.Insert(con, data);
+            return repository.InsertUserProfile(con, data);
         }
 
         // PUT: api/Registration/5
