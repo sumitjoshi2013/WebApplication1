@@ -105,6 +105,15 @@ namespace Repository
 
     }
 
+
+    public class GetMasterData
+    {
+        public int VALUE_ID { get; set; }
+        public int LOOKUP_ID { get; set; }
+        public string VALUE1 { get; set; }
+     
+    }
+
     public class GetLoginInfo
     {
         public object Code { get; set; }
