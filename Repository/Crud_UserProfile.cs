@@ -118,6 +118,42 @@ namespace Repository
             }
         }
 
+        public List<GetShowInterestModel> GetInterestShownProfiles(string conn, string userid)
+        {
+            using (IDbConnection db = new SqlConnection(conn))
+            {
+                string readSp = "GetInterestedProfiles";
+                var para = new DynamicParameters();
+                para.Add("@USER_ID", userid);
+                var data = db.Query<GetShowInterestModel>(readSp, para, commandType: CommandType.StoredProcedure).ToList();
+                return data;
+            }
+        }
+
+        public List<UserProfile> GetShowUserProfiles(string conn, string userid)
+        {
+            using (IDbConnection db = new SqlConnection(conn))
+            {
+                string readSp = "GetProfileDetails";
+                var para = new DynamicParameters();
+                para.Add("@USER_ID", userid);
+                var data = db.Query<UserProfile>(readSp, para, commandType: CommandType.StoredProcedure).ToList();
+                return data;
+            }
+        }
+
+        public List<GetUserMessages> GetUserMessages(string conn, string InterestId)
+        {
+            using (IDbConnection db = new SqlConnection(conn))
+            {
+                string readSp = "GetUserMessage";
+                var para = new DynamicParameters();
+                para.Add("@InterestId", InterestId);
+                var data = db.Query<GetUserMessages>(readSp, para, commandType: CommandType.StoredProcedure).ToList();
+                return data;
+            }
+        }
+
 
         public List<GetMasterData> GetMasterData(string conn)
         {
