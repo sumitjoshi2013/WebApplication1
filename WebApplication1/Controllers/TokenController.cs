@@ -10,28 +10,22 @@ using Microsoft.IdentityModel.Tokens;
 using System.Web.Http.Cors;
 using System.Configuration;
 using Repository;
-
 namespace WebApi.Jwt.Controllers
 {
-
     // [EnableCors(origins: "*", headers: "*", methods: "*", SupportsCredentials = true)]
     [AllowAnonymous]
     public class TokenController : ApiController
     {
-       
         public HttpResponseMessage Get(string username, string password)
         {
             if (CheckUser(username, password))
             {
-                var t = JwtManager.GenerateToken(username);
-                var response = Request.CreateResponse(HttpStatusCode.OK, t);
+                var token = JwtManager.GenerateToken(username);
+                var response = Request.CreateResponse(HttpStatusCode.OK, token);
                 return response;
             }
-
             throw new HttpResponseException(HttpStatusCode.Unauthorized);
         }
-      
-     
         public bool CheckUser(string username, string password)
         {
             bool flag = true;
@@ -42,7 +36,6 @@ namespace WebApi.Jwt.Controllers
             }
             return flag;
         }
-
         private GetLoginInfo getUserLoginInfoData(string username, string password)
         {
             string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
@@ -66,7 +59,5 @@ namespace WebApi.Jwt.Controllers
          throw new HttpResponseException(HttpStatusCode.Accepted);
      }
      */
-
     }
-
 }

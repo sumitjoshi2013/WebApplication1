@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -98,7 +100,7 @@ namespace Repository
     public class GetRegistrationModel
     {
         public object USER_ID { get; set; }
-
+      //  [JsonProperty("JsonRawData")]
         public string JsonRawData { get; set; }
 
         public int USER_PEROFILE_ID { get; set; }
@@ -108,9 +110,9 @@ namespace Repository
 
     public class GetMasterData
     {
-        public int VALUE_ID { get; set; }
+        public int id { get; set; }
         public int LOOKUP_ID { get; set; }
-        public string VALUE1 { get; set; }
+        public string name { get; set; }
      
     }
 

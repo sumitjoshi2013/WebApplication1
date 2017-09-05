@@ -17,16 +17,15 @@ namespace WebApi.Jwt.Controllers
     public class MasterDataController : ApiController
     {
         IEnumerable<GetMasterData> getData;
-        public IEnumerable<GetMasterData> GetMasterData(int lookUpId)
+
+        public HttpResponseMessage Get(int lookUpId)
         {
-            if (getData != null)
-            {
-                string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
-                Crud_UserProfile repository = new Crud_UserProfile();
-                getData = repository.GetMasterData(con).Where(m => m.LOOKUP_ID == lookUpId); 
-                return getData;
-            }
-            return getData;
+            string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
+            Crud_UserProfile repository = new Crud_UserProfile();
+            getData = repository.GetMasterData(con).Where(m => m.LOOKUP_ID == lookUpId).ToList();
+            var response = Request.CreateResponse(HttpStatusCode.OK, getData);
+            //return getData.AsEnumerable();
+            return response;
         }
 
     }
