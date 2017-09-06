@@ -118,13 +118,13 @@ namespace Repository
             }
         }
 
-        public List<GetShowInterestModel> GetInterestShownProfiles(string conn, string userid)
+        public List<GetShowInterestModel> GetInterestShownProfiles(string conn, string emailId)
         {
             using (IDbConnection db = new SqlConnection(conn))
             {
-                string readSp = "GetInterestedProfiles";
+                string readSp = "GetInterestedProfilesByEmailId";
                 var para = new DynamicParameters();
-                para.Add("@USER_ID", userid);
+                para.Add("@E_MAIL", emailId);
                 var data = db.Query<GetShowInterestModel>(readSp, para, commandType: CommandType.StoredProcedure).ToList();
                 return data;
             }

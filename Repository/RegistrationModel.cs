@@ -132,13 +132,13 @@ namespace Repository
       
     }
 
-    public class GetMasterData
-    {
-        public int id { get; set; }
-        public int LOOKUP_ID { get; set; }
-        public string name { get; set; }
+    //public class GetMasterData
+    //{
+    //    public int id { get; set; }
+    //    public int LOOKUP_ID { get; set; }
+    //    public string name { get; set; }
      
-    }
+    //}
 
     public class GetLoginInfo
     {
