@@ -116,6 +116,14 @@ namespace Repository
         public string status { get; set; }
     }
 
+    public class GetMasterData
+    {
+        public int  id { get; set; }
+        public string name { get; set; }
+        public string status { get; set; }
+    }
+
+
     public class GetUserMessages
     {
         public string message { get; set; }

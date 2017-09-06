@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Repository;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -11,79 +13,121 @@ namespace WebApplication1.Controllers
     {
         // GET: api/MasterData
         [HttpGet, ActionName("AcceptMaster")]
-        public IEnumerable<string> GetAcceptMaster()
+        public IEnumerable<GetMasterData> GetAcceptMaster(string userd)
         {
-            return new string[] { "value1", "value2" };
+
+            string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
+            Crud_UserProfile repository = new Crud_UserProfile();
+            return repository.GetMasterData(con, userd, "GetAcceptMaster");
         }
         [HttpGet, ActionName("CasteMaster")]
-        public IEnumerable<string> GetCasteMaster()
+        public IEnumerable<GetMasterData> GetCasteMaster(string userd)
         {
-            return new string[] { "value1", "value2" };
+
+            string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
+            Crud_UserProfile repository = new Crud_UserProfile();
+            return repository.GetMasterData(con, userd, "GetCasteMaster");
         }
         [HttpGet, ActionName("DrinkMaster")]
-        public IEnumerable<string> GetDrinkMaster()
+        public IEnumerable<GetMasterData> GetDrinkMaster(string userd)
         {
-            return new string[] { "value1", "value2" };
+
+            string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
+            Crud_UserProfile repository = new Crud_UserProfile();
+            return repository.GetMasterData(con, userd, "GetDrinkMaster");
         }
         [HttpGet, ActionName("GenderMaster")]
-        public IEnumerable<string> GetGenderMaster()
+        public IEnumerable<GetMasterData> GetGenderMaster(string userd)
         {
-            return new string[] { "value1", "value2" };
+
+            string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
+            Crud_UserProfile repository = new Crud_UserProfile();
+            return repository.GetMasterData(con, userd, "GetGenderMaster");
         }
         [HttpGet, ActionName("JobMaster")]
-        public IEnumerable<string> GetJobMaster()
+        public IEnumerable<GetMasterData> GetJobMaster(string userd)
         {
-            return new string[] { "value1", "value2" };
+
+            string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
+            Crud_UserProfile repository = new Crud_UserProfile();
+            return repository.GetMasterData(con, userd, "GetJobMaster");
         }
         [HttpGet, ActionName("LanguageMaster")]
-        public IEnumerable<string> GetLanguageMaster()
+        public IEnumerable<GetMasterData> GetLanguageMaster(string userd)
         {
-            return new string[] { "value1", "value2" };
+
+            string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
+            Crud_UserProfile repository = new Crud_UserProfile();
+            return repository.GetMasterData(con, userd, "GetLanguageMaster");
         }
 
         [HttpGet, ActionName("MaritialStatusMaster")]
-        public IEnumerable<string> GetMaritialStatusMaster()
+        public IEnumerable<GetMasterData> GetMaritialStatusMaster(string userd)
         {
-            return new string[] { "value1", "value2" };
+
+            string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
+            Crud_UserProfile repository = new Crud_UserProfile();
+            return repository.GetMasterData(con, userd, "GetMaritialStatusMaster");
         }
         [HttpGet, ActionName("ProfileCreatedByMaster")]
-        public IEnumerable<string> GetProfileCreatedByMaster()
+        public IEnumerable<GetMasterData> GetProfileCreatedByMaster(string userd)
         {
-            return new string[] { "value1", "value2" };
+
+            string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
+            Crud_UserProfile repository = new Crud_UserProfile();
+            return repository.GetMasterData(con, userd, "GetProfileCreatedByMaster");
         }
         [HttpGet, ActionName("RashiMaster")]
-        public IEnumerable<string> GetRashiMaster()
+        public IEnumerable<GetMasterData> GetRashiMaster(string userd)
         {
-            return new string[] { "value1", "value2" };
+
+            string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
+            Crud_UserProfile repository = new Crud_UserProfile();
+            return repository.GetMasterData(con, userd, "GetRashiMaster");
         }
 
         [HttpGet, ActionName("ReligionMaster")]
-        public IEnumerable<string> GetReligionMaster()
+        public IEnumerable<GetMasterData> GetReligionMaster(string userd)
         {
-            return new string[] { "value1", "value2" };
+
+            string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
+            Crud_UserProfile repository = new Crud_UserProfile();
+            return repository.GetMasterData(con, userd, "GetReligionMaster");
         }
         [HttpGet, ActionName("SalaryMaster")]
-        public IEnumerable<string> GetSalaryMaster()
+        public IEnumerable<GetMasterData> GetSalaryMaster(string userd)
         {
-            return new string[] { "value1", "value2" };
+
+            string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
+            Crud_UserProfile repository = new Crud_UserProfile();
+            return repository.GetMasterData(con, userd, "GetSalaryMaster");
         }
         [HttpGet, ActionName("SmokingMaster")]
-        public IEnumerable<string> GetSmokingMaster()
+        public IEnumerable<GetMasterData> GetSmokingMaster(string userd)
         {
-            return new string[] { "value1", "value2" };
+
+            string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
+            Crud_UserProfile repository = new Crud_UserProfile();
+            return repository.GetMasterData(con, userd, "GetSmokingMaster");
         }
 
         [HttpGet, ActionName("StateMaster")]
-        public IEnumerable<string> GetStateMaster()
+        public IEnumerable<GetMasterData> GetStateMaster(string userd)
         {
-            return new string[] { "value1", "value2" };
+
+            string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
+            Crud_UserProfile repository = new Crud_UserProfile();
+            return repository.GetMasterData(con, userd, "GetStateMaster");
         }
         [HttpGet, ActionName("VegMaster")]
-        public IEnumerable<string> GetVegMaster()
+        public IEnumerable<GetMasterData> GetVegMaster(string userd)
         {
-            return new string[] { "value1", "value2" };
+
+            string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
+            Crud_UserProfile repository = new Crud_UserProfile();
+            return repository.GetMasterData(con, userd, "GetVegMaster");
         }
-       
-      
+
+
     }
 }

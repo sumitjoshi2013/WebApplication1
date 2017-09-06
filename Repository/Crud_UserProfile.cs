@@ -130,6 +130,15 @@ namespace Repository
             }
         }
 
+        public List<GetMasterData> GetMasterData(string conn, string userid, string readSp)
+        {
+            using (IDbConnection db = new SqlConnection(conn))
+            {
+                var data = db.Query<GetMasterData>(readSp, commandType: CommandType.StoredProcedure).ToList();
+                return data;
+            }
+        }
+
         public List<UserProfile> GetShowUserProfiles(string conn, string userid)
         {
             using (IDbConnection db = new SqlConnection(conn))
