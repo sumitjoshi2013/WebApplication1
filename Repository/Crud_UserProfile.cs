@@ -130,6 +130,18 @@ namespace Repository
             }
         }
 
+        public List<GetUserRequestsModel> GetUserRequests(string conn, string emailId)
+        {
+            using (IDbConnection db = new SqlConnection(conn))
+            {
+                string readSp = "GetUserRequests";
+                var para = new DynamicParameters();
+                para.Add("@E_MAIL", emailId);
+                var data = db.Query<GetUserRequestsModel>(readSp, para, commandType: CommandType.StoredProcedure).ToList();
+                return data;
+            }
+        }
+        
         public List<GetMasterData> GetMasterData(string conn, string userid, string readSp)
         {
             using (IDbConnection db = new SqlConnection(conn))

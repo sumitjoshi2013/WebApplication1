@@ -116,6 +116,15 @@ namespace Repository
         public string status { get; set; }
     }
 
+
+    public class GetUserRequestsModel
+    {
+        public int totalCount { get; set; }
+        public int totalCountReceived { get; set; }
+
+        public int totalCountReject { get; set; }
+    }
+
     public class GetMasterData
     {
         public int  id { get; set; }
