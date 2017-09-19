@@ -12,13 +12,37 @@ namespace WebApplication1.Controllers
     public class UserMessagesController : ApiController
     {
         // GET: api/UserMessages
-        public IEnumerable<GetUserMessages> Get(string InterestId)
+        [HttpGet, ActionName("ShowInterest")]
+        public IEnumerable<GetShowInterestModel> GetShowInterest(string ResponderEmailId)
         {
             string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
             Crud_UserProfile repository = new Crud_UserProfile();
-            return repository.GetUserMessages(con, InterestId);
+            return repository.GetInterestShownProfiles(con, ResponderEmailId);
         }
 
+        [HttpGet, ActionName("UserLogMessages")]
+        public IEnumerable<GetUserMessages> GetUserLogMessages(string ResponderEmailId)
+        {
+            string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
+            Crud_UserProfile repository = new Crud_UserProfile();
+            return repository.GetUserMessages(con, ResponderEmailId);
+        }
+
+        [HttpGet, ActionName("UserLogReqSendMessages")]
+        public IEnumerable<GetUserMessages> GetUserLogReqSendMessages(string ResponderEmailId)
+        {
+            string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
+            Crud_UserProfile repository = new Crud_UserProfile();
+            return repository.GetUserLogReqSendMessages(con, ResponderEmailId);
+        }
+
+        [HttpGet, ActionName("UserLogReqReceivedMessages")]
+        public IEnumerable<GetUserMessages> GetUserLogReqReceivedMessages(string ResponderEmailId)
+        {
+            string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
+            Crud_UserProfile repository = new Crud_UserProfile();
+            return repository.GetUserLogReqReceivedMessages(con, ResponderEmailId);
+        }
         // GET: api/UserMessages/5
         public string Get(int id)
         {

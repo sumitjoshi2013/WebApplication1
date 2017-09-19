@@ -14,13 +14,15 @@ namespace WebApplication1.Controllers
     public class RegistrationController : ApiController
     {
         // GET: api/Registration
-        public IEnumerable<GetRegistrationModel> Get()
+        [HttpGet, ActionName("GetAllProfiles")]
+        public IEnumerable<UserProfile> ShowAllProfiles(string emailid)
         {
             string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
             Crud_UserProfile repository = new Crud_UserProfile();
-            return repository.GetProfiles(con);
+            return repository.GetProfiles(con, emailid);
         }
 
+        /*
         // GET: api/Registration/5
         public GetRegistrationModel Get(string id)
         {
@@ -28,7 +30,7 @@ namespace WebApplication1.Controllers
             Crud_UserProfile repository = new Crud_UserProfile();
             return repository.GetProfileById(con, id);
         }
-
+        */
         // POST: api/Registration
         public string Post(RegistrationModel value)
         {

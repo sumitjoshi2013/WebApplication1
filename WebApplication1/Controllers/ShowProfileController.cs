@@ -12,12 +12,21 @@ namespace WebApplication1.Controllers
     public class ShowProfileController : ApiController
     {
         // GET: api/ShowProfile
-        public IEnumerable<UserProfile> Get(string userid)
+        [HttpGet, ActionName("ShowProfile")]
+        public IEnumerable<GetShowInterestModel> Get(string userid)
         {
             string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
             Crud_UserProfile repository = new Crud_UserProfile();
-            return repository.GetShowUserProfiles(con, userid);
+            return repository.GetInterestShownProfiles(con, userid);
         }
+        [HttpGet, ActionName("ShowUserProfileByUniqueId")]
+        public UserProfile GetShowUserProfileByUniqueId(string userid)
+        {
+            string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
+            Crud_UserProfile repository = new Crud_UserProfile();
+            return repository.GetShowUserProfileByUniqueId(con, userid);
+        }
+        
 
         // GET: api/ShowProfile/5
         public string Get(int id)

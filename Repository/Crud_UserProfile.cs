@@ -24,10 +24,9 @@ namespace Repository
 
             try
             {
-                DateTime dt = DateTime.ParseExact(registrationModel.dob.date.day + "/" + registrationModel.dob.date.month + "/" + registrationModel.dob.date.year, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                string dt = registrationModel.dob.formatted;
                 para.Add("@F_NAME", registrationModel.firstName);
                 para.Add("@L_NAME", registrationModel.lastName);
-                para.Add("@M_NAME", "");
                 para.Add("@COUNTRY_ID", registrationModel.country);
                 para.Add("@CITY_ID", registrationModel.city);
                 para.Add("@ADDRESS", registrationModel.address);
@@ -41,53 +40,28 @@ namespace Repository
                 para.Add("@MY_RASHI", registrationModel.rashi);
                 para.Add("@MY_GOTHRA", registrationModel.gotra);
                 para.Add("@MY_NATIVE_PLACE", registrationModel.nativeplace);
-                para.Add("@MY_HORO_MATCH", "");
-                para.Add("@MY_MANGLIK_STATUS", "");
                 para.Add("@PHONE_NO1", registrationModel.landline);
-                para.Add("@PHONE_NO1_IDENTITY", "");
-                para.Add("@SHOW_PHONE_NO1", "");
                 para.Add("@PHONE_NO2", registrationModel.landline);
-                para.Add("@PHONE_NO2_IDENTITY", "");
-                para.Add("@SHOW_PHONE_NO2", "");
                 para.Add("@MOBILE_NO1", registrationModel.mobile);
-                para.Add("@MOBILE_NO1_IDENTITY", "");
-                para.Add("@SHOW_MOBILE_NO1", "");
                 para.Add("@MARITIAL_STATUS", registrationModel.maritalstatus);
                 para.Add("@ABOUT_ME", registrationModel.about);
-                para.Add("@ABOUT_MY_FAMILY", "");
                 para.Add("@ABOUT_MY_EDUCATION", registrationModel.education);
                 para.Add("@ABOUT_MY_PROFESSION", registrationModel.profession);
-                para.Add("@MY_FAMILY_VALUES", "");
-                para.Add("@MY_FAMILY_TYPE", "");
-                para.Add("@MY_FAMILY_STATUS", "");
-                para.Add("@MY_FATHER_STATUS", "");
-                para.Add("@MY_MOTHER_STATUS", "");
-                para.Add("@NO_OF_BROTHERS", "");
-                para.Add("@MARRIED_BROTHERS", "");
-                para.Add("@NO_OF_SISTERS", "");
-                para.Add("@MARRIED_SISTERS", "");
                 para.Add("@MY_HIGHEST_DEGREE", registrationModel.education);
-                para.Add("@MY_OCCUPTION", registrationModel.profession);
-                para.Add("@CURRENCY_ID", "");
                 para.Add("@MY_MIN_INCOME", registrationModel.incomerange);
                 para.Add("@MY_MAX_INCOME", registrationModel.incomerange);
-                para.Add("@MY_WORK_STATUS", registrationModel.profession);
+                para.Add("@MY_WORK_STATUS", registrationModel.workstatus);
                 para.Add("@DIET_STATUS", registrationModel.dietstatus);
                 para.Add("@SMOKE_STATUS", registrationModel.smokestatus);
                 para.Add("@DRINK_STATUS", registrationModel.drinkstatus);
-                para.Add("@COMPLEXION_STATUS", "");
-                para.Add("@BODY_TYPE", "");
-                para.Add("@BLOOD_GROUP", "");
                 para.Add("@HEIGHT", registrationModel.height);
                 para.Add("@WEIGHT", registrationModel.weight);
-                para.Add("@MY_PREFERED_DRESS", "");
-                para.Add("@PHYSICAL_CHALLANGED_STATUS", "");
-                para.Add("@HIV_STATUS", "");
                 para.Add("@UPDATE_PROFILE_ID", "");
                 para.Add("@CREATED_BY", "");
                 para.Add("@MODIFIED_BY", "");
                 para.Add("@STATUS", 1);
-
+                para.Add("@GENDER", registrationModel.gender);
+                
                 var json = new JavaScriptSerializer().Serialize(registrationModel);
                 para.Add("@JSONObject", json);
             }
@@ -108,12 +82,14 @@ namespace Repository
             return msg;
         }
     
-        public List<GetRegistrationModel> GetProfiles(string conn)
+        public List<UserProfile> GetProfiles(string conn, string emailid)
         {
             using (IDbConnection db = new SqlConnection(conn))
             {
                 string readSp = "GetProfiles";
-                var data = db.Query<GetRegistrationModel>(readSp, commandType: CommandType.StoredProcedure).ToList();
+                var para = new DynamicParameters();
+                para.Add("@emailid", emailid);
+                var data = db.Query<UserProfile>(readSp, para, commandType: CommandType.StoredProcedure).ToList();
                 return data;
             }
         }
@@ -129,16 +105,37 @@ namespace Repository
                 return data;
             }
         }
-
-        public List<GetUserRequestsModel> GetUserRequests(string conn, string emailId)
+        public List<GetShowInterestModel> GetCountOfPendingResponseByEmailId(string conn, string emailId)
         {
             using (IDbConnection db = new SqlConnection(conn))
             {
-                string readSp = "GetUserRequests";
+                string readSp = "GetCountOfPendingResponseByEmailId";
                 var para = new DynamicParameters();
                 para.Add("@E_MAIL", emailId);
-                var data = db.Query<GetUserRequestsModel>(readSp, para, commandType: CommandType.StoredProcedure).ToList();
+                var data = db.Query<GetShowInterestModel>(readSp, para, commandType: CommandType.StoredProcedure).ToList();
                 return data;
+            }
+        }
+
+        
+        public GetUserRequestsModel GetUserRequestsCounts(string conn, string emailId)
+        {
+            GetUserRequestsModel getUserRequestsModel = new GetUserRequestsModel();
+            using (IDbConnection db = new SqlConnection(conn))
+            {
+                string readSp = "GetUserRequestsCounts";
+                var para = new DynamicParameters();
+                para.Add("@E_MAIL", emailId);
+                using (var multi = db.QueryMultiple(readSp, para, commandType: CommandType.StoredProcedure))
+                {
+                    getUserRequestsModel.TotalRequestSendCount = multi.Read<int>().Single();
+                    getUserRequestsModel.TotalPendingResponseCount = multi.Read<int>().Single();
+                    getUserRequestsModel.TotalRequestReceivedCount= multi.Read<int>().Single();
+                    getUserRequestsModel.TotalRequestRejectCount = multi.Read<int>().Single();
+                }
+
+               // var data = db.Query<GetUserRequestsModel>(readSp, para, commandType: CommandType.StoredProcedure).ToList();
+                return getUserRequestsModel;
             }
         }
         
@@ -163,18 +160,72 @@ namespace Repository
             }
         }
 
-        public List<GetUserMessages> GetUserMessages(string conn, string InterestId)
+
+        public UserProfile GetShowUserProfileByUniqueId(string conn, string userid)
         {
             using (IDbConnection db = new SqlConnection(conn))
             {
-                string readSp = "GetUserMessage";
+                string readSp = "GetProfileDetailByUniqueId";
                 var para = new DynamicParameters();
-                para.Add("@InterestId", InterestId);
+                para.Add("@User_Id", userid);
+                var data = db.Query<UserProfile>(readSp, para, commandType: CommandType.StoredProcedure).SingleOrDefault();
+                return data;
+            }
+        }
+
+        public List<GetUserMessages> ShowInterest(string conn, string ResponderEmailId)
+        {
+            using (IDbConnection db = new SqlConnection(conn))
+            {
+                string readSp = "GetShowInterest";
+                var para = new DynamicParameters();
+                para.Add("@ResponderEmailId", ResponderEmailId);
+               // para.Add("@MessageStatusId", MessageStatusId.ToString());
                 var data = db.Query<GetUserMessages>(readSp, para, commandType: CommandType.StoredProcedure).ToList();
                 return data;
             }
         }
 
+
+        public List<GetUserMessages> GetUserMessages(string conn, string ResponderEmailId)
+        {
+            using (IDbConnection db = new SqlConnection(conn))
+            {
+                string readSp = "GetUserMessage";
+                var para = new DynamicParameters();
+                para.Add("@ResponderEmailId", ResponderEmailId);
+                // para.Add("@MessageStatusId", MessageStatusId.ToString());
+                var data = db.Query<GetUserMessages>(readSp, para, commandType: CommandType.StoredProcedure).ToList();
+                return data;
+            }
+        }
+
+        public List<GetUserMessages> GetUserLogReqSendMessages(string conn, string ResponderEmailId)
+        {
+            using (IDbConnection db = new SqlConnection(conn))
+            {
+                string readSp = "GetUserLogReqSendMessages";
+                var para = new DynamicParameters();
+                para.Add("@ResponderEmailId", ResponderEmailId);
+                // para.Add("@MessageStatusId", MessageStatusId.ToString());
+                var data = db.Query<GetUserMessages>(readSp, para, commandType: CommandType.StoredProcedure).ToList();
+                return data;
+            }
+        }
+
+
+        public List<GetUserMessages> GetUserLogReqReceivedMessages(string conn, string ResponderEmailId)
+        {
+            using (IDbConnection db = new SqlConnection(conn))
+            {
+                string readSp = "GetUserLogReqReceivedMessages";
+                var para = new DynamicParameters();
+                para.Add("@ResponderEmailId", ResponderEmailId);
+                // para.Add("@MessageStatusId", MessageStatusId.ToString());
+                var data = db.Query<GetUserMessages>(readSp, para, commandType: CommandType.StoredProcedure).ToList();
+                return data;
+            }
+        }
 
         public List<GetMasterData> GetMasterData(string conn)
         {

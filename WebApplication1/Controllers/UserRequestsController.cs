@@ -12,12 +12,12 @@ namespace WebApplication1.Controllers
     public class UserRequestsController : ApiController
     {
         // GET: api/UserRequests
-        public IEnumerable<GetUserRequestsModel> GetAcceptMaster(string userid)
+        public GetUserRequestsModel GetUserRequestsCounts(string userid)
         {
 
             string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
             Crud_UserProfile repository = new Crud_UserProfile();
-            return repository.GetUserRequests(con, userid);
+            return repository.GetUserRequestsCounts(con, userid);
         }
         // GET: api/UserRequests/5
       

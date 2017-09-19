@@ -113,16 +113,19 @@ namespace Repository
         public string message { get; set; }
         public string profileid { get; set; }
         public string name { get; set; }
+        public string communicationDate { get; set; }
+        public string E_MAIL { get; set; }
         public string status { get; set; }
     }
 
 
     public class GetUserRequestsModel
     {
-        public int totalCount { get; set; }
-        public int totalCountReceived { get; set; }
+        public int @TotalPendingResponseCount { get; set; }
+        public int @TotalRequestSendCount { get; set; }
 
-        public int totalCountReject { get; set; }
+        public int @TotalRequestReceivedCount { get; set; }
+        public int @TotalRequestRejectCount { get; set; }
     }
 
     public class GetMasterData
@@ -138,7 +141,9 @@ namespace Repository
         public string message { get; set; }
         public string message_send_date { get; set; }
         public string message_sender { get; set; }
-      
+
+        public string E_MAIL { get; set; }
+
     }
 
     //public class GetMasterData
@@ -166,9 +171,9 @@ namespace Repository
         public string M_NAME { get; set; }
         public string FULL_NAME { get; set; }
         public string GENDER { get; set; }
-        public dob DOB { get; set; }
+        public string DOB { get; set; }
         public string birthplace { get; set; }
-        public time TIME { get; set; }
+        public string TIME { get; set; }
         public string COUNTRY_ID { get; set; }
         public string CITY_ID { get; set; }
         public string ADDRESS { get; set; }
