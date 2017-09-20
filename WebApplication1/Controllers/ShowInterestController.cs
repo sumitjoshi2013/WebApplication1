@@ -19,25 +19,14 @@ namespace WebApplication1.Controllers
             return repository.GetInterestShownProfiles(con, userid);
         }
 
-        // GET: api/ShowInterest/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
         // POST: api/ShowInterest
-        public void Post([FromBody]string value)
+        public string Post(InterestShown value)
         {
+            var data = value;
+            string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
+            Crud_UserProfile repository = new Crud_UserProfile();
+            return repository.InsertUserInterestShown(con, data);
         }
-
-        // PUT: api/ShowInterest/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/ShowInterest/5
-        public void Delete(int id)
-        {
-        }
+       
     }
 }

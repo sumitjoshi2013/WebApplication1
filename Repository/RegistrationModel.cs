@@ -82,21 +82,36 @@ namespace Repository
 
     }
 
-    public class UserPics
+    public class InterestShown
     {
-        public string @USER_ID { get; set; }
 
-        public string @PicName { get; set; }
+        public string CommunicatorUserEmailId { get; set; }
 
-        public string @PicFolderPath { get; set; }
+        public string ResponderUserId { get; set; }
 
-        public string @PicFilePath { get; set; }
+        public string ResponseStatus { get; set; }
 
-        public string @CreatedBy { get; set; }
-        public string JsonRawData { get; set; }
+        public string Message { get; set; }
+        public string ContactEmailId { get; set; }
 
+        public string ContactPhoneNumber { get; set; }
 
     }
+
+    public class UserPics
+    {
+        public string USER_ID { get; set; }
+
+        public string PicName { get; set; }
+
+        public string PicFolderPath { get; set; }
+
+        public string PicFilePath { get; set; }
+
+        public string CreatedBy { get; set; }
+        public string JsonRawData { get; set; }
+    }
+
     public class GetRegistrationModel
     {
         public object USER_ID { get; set; }

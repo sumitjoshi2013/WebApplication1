@@ -314,6 +314,40 @@ namespace Repository
             //int valueout = para.Get<int>("@outresult");
             return msg;
         }
+        
+        public string InsertUserInterestShown(string conn, InterestShown interestShown)
+        {
+            string msg = string.Empty;
+            SqlHelper sqlHelper = new SqlHelper(conn);
+            var para = new DynamicParameters();
+            var outPut = new DynamicParameters();
+            try
+            {
+                para.Add("@CommunicatorUserEmailId", interestShown.CommunicatorUserEmailId);
+                para.Add("@ResponderUserId", interestShown.ResponderUserId);
+                para.Add("@ResponseStatus", interestShown.ResponseStatus);
+                para.Add("@Message", interestShown.Message);
+                
+                    
+                para.Add("@ContactEmailId", interestShown.ResponseStatus);
+                para.Add("@Message", interestShown.Message);
+
+            }
+            catch (Exception exp)
+            {
+                msg = "Error :" + exp.Message;
+            }
+            try
+            {
+                sqlHelper.ExecuteSp("InsertUserInterestShown", para, null, true, null);
+                msg = "Successfully Inserted Request.";
+            }
+            catch (Exception exp)
+            {
+                msg = "Error :" + exp.Message;
+            }
+            return msg;
+        }
     }
 }
 
