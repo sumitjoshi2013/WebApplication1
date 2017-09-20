@@ -180,7 +180,6 @@ namespace Repository
                 string readSp = "GetShowInterest";
                 var para = new DynamicParameters();
                 para.Add("@ResponderEmailId", ResponderEmailId);
-               // para.Add("@MessageStatusId", MessageStatusId.ToString());
                 var data = db.Query<GetUserMessages>(readSp, para, commandType: CommandType.StoredProcedure).ToList();
                 return data;
             }
@@ -194,7 +193,6 @@ namespace Repository
                 string readSp = "GetUserMessage";
                 var para = new DynamicParameters();
                 para.Add("@ResponderEmailId", ResponderEmailId);
-                // para.Add("@MessageStatusId", MessageStatusId.ToString());
                 var data = db.Query<GetUserMessages>(readSp, para, commandType: CommandType.StoredProcedure).ToList();
                 return data;
             }
@@ -207,7 +205,6 @@ namespace Repository
                 string readSp = "GetUserLogReqSendMessages";
                 var para = new DynamicParameters();
                 para.Add("@ResponderEmailId", ResponderEmailId);
-                // para.Add("@MessageStatusId", MessageStatusId.ToString());
                 var data = db.Query<GetUserMessages>(readSp, para, commandType: CommandType.StoredProcedure).ToList();
                 return data;
             }
@@ -221,12 +218,34 @@ namespace Repository
                 string readSp = "GetUserLogReqReceivedMessages";
                 var para = new DynamicParameters();
                 para.Add("@ResponderEmailId", ResponderEmailId);
-                // para.Add("@MessageStatusId", MessageStatusId.ToString());
                 var data = db.Query<GetUserMessages>(readSp, para, commandType: CommandType.StoredProcedure).ToList();
                 return data;
             }
         }
 
+        public List<GetUserMessages> GetUserLogReqRejectedMessages(string conn, string ResponderEmailId)
+        {
+            using (IDbConnection db = new SqlConnection(conn))
+            {
+                string readSp = "GetUserLogReqRejectedMessages";
+                var para = new DynamicParameters();
+                para.Add("@ResponderEmailId", ResponderEmailId);
+                var data = db.Query<GetUserMessages>(readSp, para, commandType: CommandType.StoredProcedure).ToList();
+                return data;
+            }
+        }
+        //
+        public List<GetUserMessages> GetUserLogReqPendingMessages(string conn, string ResponderEmailId)
+        {
+            using (IDbConnection db = new SqlConnection(conn))
+            {
+                string readSp = "GetUserLogReqPendingMessages";
+                var para = new DynamicParameters();
+                para.Add("@E_MAIL", ResponderEmailId);
+                var data = db.Query<GetUserMessages>(readSp, para, commandType: CommandType.StoredProcedure).ToList();
+                return data;
+            }
+        }
         public List<GetMasterData> GetMasterData(string conn)
         {
             using (IDbConnection db = new SqlConnection(conn))

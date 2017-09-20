@@ -44,6 +44,26 @@ namespace WebApplication1.Controllers
             return repository.GetUserLogReqReceivedMessages(con, ResponderEmailId);
         }
         // GET: api/UserMessages/5
+
+        //
+
+        [HttpGet, ActionName("UserLogReqRejectedMessages")]
+        public IEnumerable<GetUserMessages> GetUserLogReqRejectedMessages(string ResponderEmailId)
+        {
+            string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
+            Crud_UserProfile repository = new Crud_UserProfile();
+            return repository.GetUserLogReqRejectedMessages(con, ResponderEmailId);
+        }
+
+        //
+        [HttpGet, ActionName("UserLogReqPendingMessages")]
+        public IEnumerable<GetUserMessages> GetUserLogReqPendingMessages(string ResponderEmailId)
+        {
+            string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
+            Crud_UserProfile repository = new Crud_UserProfile();
+            return repository.GetUserLogReqPendingMessages(con, ResponderEmailId);
+        }
+
         public string Get(int id)
         {
             return "value";
