@@ -139,7 +139,7 @@ namespace Repository
             }
         }
         
-        public List<GetMasterData> GetMasterData(string conn, string userid, string readSp)
+        public List<GetMasterData> GetMasterData(string conn,  string readSp)
         {
             using (IDbConnection db = new SqlConnection(conn))
             {

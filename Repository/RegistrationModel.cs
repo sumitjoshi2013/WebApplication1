@@ -203,7 +203,7 @@ namespace Repository
         public string PHONE_NO2 { get; set; }
         public string MOBILE_NO1 { get; set; }
         public string MARITIAL_STATUS { get; set; }
-        public string ABOUT_MY_EDUCATION { get; set; }
+        public string MY_NATIVE_PLACE { get; set; }
         public string ABOUT_MY_PROFESSION { get; set; }
         public string MY_OCCUPTION { get; set; }
         public string MY_MIN_INCOME { get; set; }
@@ -217,5 +217,16 @@ namespace Repository
         public string WEIGHT { get; set; }
         public string CREATED_BY { get; set; }
         public string CREATED_ON { get; set; }
+        public string ABOUT_ME { get; set; }
+        public string MY_MOTHER_TOUNG { get; set; }
+        public string FACEBOOK_ID { get; set; }
+        public string TWITTER_ID { get; set; }
+        public string OTHERSOCIALNETWORKING_ID { get; set; }
+
+        public string ABOUT_MY_EDUCATION { get; set; }
+        public string COUNTRY { get; set; }
+        public string CITY { get; set; }
+        public string address { get; set; }
+
     }
 }
