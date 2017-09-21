@@ -74,11 +74,16 @@ namespace Repository
 
         public string email { get; set; }
         public string nativeplace { get; set; }
-
         public string mobile { get; set; }
         public string JsonRawData { get; set; }
 
         public int USER_PEROFILE_ID { get; set; }
+
+
+
+        public string FACEBOOK_ID { get; set; }
+        public string TWITTER_ID { get; set; }
+        public string LINKEDIN_ID { get; set; }
 
     }
 

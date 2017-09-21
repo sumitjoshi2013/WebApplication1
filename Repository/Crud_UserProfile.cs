@@ -61,7 +61,13 @@ namespace Repository
                 para.Add("@MODIFIED_BY", "");
                 para.Add("@STATUS", 1);
                 para.Add("@GENDER", registrationModel.gender);
-                
+
+                para.Add("@FACEBOOK_ID", registrationModel.FACEBOOK_ID);
+                para.Add("@TWITTER_ID", registrationModel.TWITTER_ID);
+                para.Add("@LINKEDIN_ID", registrationModel.LINKEDIN_ID);
+
+
+
                 var json = new JavaScriptSerializer().Serialize(registrationModel);
                 para.Add("@JSONObject", json);
             }
