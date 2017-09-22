@@ -287,6 +287,48 @@ namespace Repository
             }
         }
 
+        public List<ProfileVisitor> GetProfileVisitor(string conn, string userId)
+        {
+            using (IDbConnection db = new SqlConnection(conn))
+            {
+                string readSp = "GetVisitorDetails";
+                var para = new DynamicParameters();
+                para.Add("@UserEmailId", userId);
+                var data = db.Query<ProfileVisitor>(readSp, para, commandType: CommandType.StoredProcedure).ToList();
+                return data;
+            }
+        }
+
+        public string InsertProfileVisitor(string conn, ProfileVisitor profileVisitor)
+        {
+            string msg = string.Empty;
+            SqlHelper sqlHelper = new SqlHelper(conn);
+
+            var para = new DynamicParameters();
+            var outPut = new DynamicParameters();
+
+            try
+            {
+                para.Add("@UserEmailId", profileVisitor.EmailId);
+                para.Add("@VisitorEmailID", profileVisitor.VisitorEmailID);
+            }
+            catch (Exception exp)
+            {
+                msg = "Error :" + exp.Message;
+            }
+            try
+            {
+                sqlHelper.ExecuteSp("InsertVisitorDetails", para, null, true, null);
+                msg = "Successfully Inserted Data.";
+            }
+            catch (Exception exp)
+            {
+                msg = "Error :" + exp.Message;
+            }
+            //int valueout = para.Get<int>("@outresult");
+            return msg;
+        }
+
 
         public string InsertUserProfilePics(string conn, UserPics userPics)
         {

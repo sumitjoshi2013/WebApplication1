@@ -87,6 +87,33 @@ namespace Repository
 
     }
 
+
+    public class ProfileVisitor
+    {
+
+        public int profileId { get; set; }
+
+        public string Name { get; set; }
+
+        public string EmailId { get; set; }
+        public string VisitorEmailID { get; set; }
+        public string VisitorID { get; set; }
+        public string VisitorDate { get; set; }
+
+        public string age { get; set; }
+
+        public string maritialstatus { get; set; }
+
+        public string gotra { get; set; }
+
+        public string religion { get; set; }
+
+        public string visitordate { get; set; }
+
+
+    }
+
+
     public class InterestShown
     {
 
