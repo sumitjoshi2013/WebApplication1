@@ -143,6 +143,13 @@ namespace Repository
         public string CreatedBy { get; set; }
     }
 
+    public class UpdateUserPics
+    {
+       
+        public string PicId { get; set; }
+        
+    }
+
     public class GetRegistrationModel
     {
         public object USER_ID { get; set; }

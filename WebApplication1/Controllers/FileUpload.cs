@@ -15,6 +15,17 @@ namespace WebApplication1.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class FileuploadController : ApiController
     {
+
+        //GetUserPics
+
+        [HttpGet, ActionName("GetUserPics")]
+        public IEnumerable<UserProfile> UserPics(string emailid)
+        {
+            string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
+            Crud_UserProfile repository = new Crud_UserProfile();
+            return repository.GetProfiles(con, emailid);
+        }
+
         // GET api/values
         [HttpPost,ActionName("File")]
         
@@ -43,5 +54,26 @@ namespace WebApplication1.Controllers
             return repository.InsertUserProfilePics(con, data);
             //InsertUserProfilePics
         }
+
+        [HttpPost, ActionName("Delete")]
+        public string DeletePic(UpdateUserPics userPics)
+        {
+            var data = userPics;
+            string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
+            Crud_UserProfile repository = new Crud_UserProfile();
+            return repository.DeletePic(con, data);
+            //InsertUserProfilePics
+        }
+
+        [HttpPost, ActionName("Update")]
+        public string UpdateProfilePic(UpdateUserPics userPics)
+        {
+            var data = userPics;
+            string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
+            Crud_UserProfile repository = new Crud_UserProfile();
+            return repository.UpdateProfilePic(con, data);
+            //InsertUserProfilePics
+        }
+
     }
 }

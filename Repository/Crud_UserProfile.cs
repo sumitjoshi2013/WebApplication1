@@ -133,6 +133,18 @@ namespace Repository
             return msg;
         }
 
+        //
+        public List<UserProfile> GetUserPics(string conn, string emailid)
+        {
+            using (IDbConnection db = new SqlConnection(conn))
+            {
+                string readSp = "GetUserPics";
+                var para = new DynamicParameters();
+                para.Add("@emailid", emailid);
+                var data = db.Query<UserProfile>(readSp, para, commandType: CommandType.StoredProcedure).ToList();
+                return data;
+            }
+        }
 
         public List<UserProfile> GetProfiles(string conn, string emailid)
         {
@@ -407,7 +419,61 @@ namespace Repository
             //int valueout = para.Get<int>("@outresult");
             return msg;
         }
+        
 
+        public string UpdateProfilePic(string conn, UpdateUserPics userPics)
+        {
+            string msg = string.Empty;
+            SqlHelper sqlHelper = new SqlHelper(conn);
+            var para = new DynamicParameters();
+            var outPut = new DynamicParameters();
+            try
+            {
+                para.Add("@PicID", userPics.PicId);
+            }
+            catch (Exception exp)
+            {
+                msg = "Error :" + exp.Message;
+            }
+            try
+            {
+                var result = sqlHelper.ExecuteSpReturnMessage("UpdateUserProfilePic", para, null, true, null);
+                msg = "Successfully Update Profile Pic.";
+            }
+            catch (Exception exp)
+            {
+                msg = "Error :" + exp.Message;
+            }
+            //int valueout = para.Get<int>("@outresult");
+            return msg;
+        }
+
+        public string DeletePic(string conn, UpdateUserPics userPics)
+        {
+            string msg = string.Empty;
+            SqlHelper sqlHelper = new SqlHelper(conn);
+            var para = new DynamicParameters();
+            var outPut = new DynamicParameters();
+            try
+            {
+                para.Add("@PicID", userPics.PicId);
+            }
+            catch (Exception exp)
+            {
+                msg = "Error :" + exp.Message;
+            }
+            try
+            {
+                var result = sqlHelper.ExecuteSpReturnMessage("DeleteUserPic", para, null, true, null);
+                msg = "Successfully Update Profile Pic.";
+            }
+            catch (Exception exp)
+            {
+                msg = "Error :" + exp.Message;
+            }
+            //int valueout = para.Get<int>("@outresult");
+            return msg;
+        }
 
         public string InsertUserProfilePics(string conn, UserPics userPics)
         {
