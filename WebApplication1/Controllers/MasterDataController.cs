@@ -12,6 +12,16 @@ namespace WebApplication1.Controllers
     public class MasterDataController : ApiController
     {
         // GET: api/MasterData
+
+        [HttpGet, ActionName("BasicProfileDetails")]
+        public RegistrationModel GetBasicProfileDetails(string userid)
+        {
+
+            string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
+            Crud_UserProfile repository = new Crud_UserProfile();
+            return repository.GetBasicProfileDetails(con, "GetBasicProfileDetails", userid);
+        }
+
         [HttpGet, ActionName("AcceptMaster")]
         public IEnumerable<GetMasterData> GetAcceptMaster()
         {

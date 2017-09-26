@@ -29,6 +29,10 @@ namespace WebApi.Jwt
 
             // Web API configuration and services
             //config.Filters.Add(new AuthorizeAttribute());
+
+            config.Formatters.XmlFormatter.SupportedMediaTypes.Add(new System.Net.Http.Headers.MediaTypeHeaderValue("multipart/form-data"));
+
+
             var cors = new EnableCorsAttribute("*", "*", "*");
             config.EnableCors(cors);
             config.Services.Replace(typeof(IExceptionHandler), new GlobalExceptionHandler());

@@ -250,9 +250,10 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\FileUploader\FileUpload.cs" />
+    <Compile Include="Controllers\FileUpload.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MasterDataController.cs" />
+    <Compile Include="Controllers\RegistrationBasicController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Controllers\ShowInterestController.cs" />
     <Compile Include="Controllers\ShowProfileController.cs" />
@@ -333,6 +334,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Controllers\FileUploader\" />
     <Folder Include="Middlewares\" />
     <Folder Include="Models\" />
     <Folder Include="UploadFile\" />

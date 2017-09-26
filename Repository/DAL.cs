@@ -9,7 +9,7 @@ using Dapper.Contrib.Extensions;
 using System.Data;
 using System.Configuration;
 using System.Data.OleDb;
-
+using System.Collections;
 
 namespace Repository
 {
@@ -92,6 +92,21 @@ namespace Repository
             }
 
         }
+
+        public IEnumerable ExecuteSpReturnMessage(string storedProcedure, dynamic param = null,
+          SqlTransaction transaction = null,
+          bool buffered = true, int? commandTimeout = null)
+        {
+            SqlConnection connection = new SqlConnection(ConnectionString);
+            connection.Open();
+            var returnMessage =  connection.Query(storedProcedure, param: (object)param, transaction: transaction, buffered: buffered, commandTimeout: commandTimeout, commandType: CommandType.StoredProcedure);
+            if (connection.State == ConnectionState.Open)
+            {
+                connection.Close();
+            }
+            return returnMessage;
+        }
+
         public IList<T> GetAll<T>(string tableName) where T : class
         {
             using (var sqlConnection = new SqlConnection(ConnectionString))

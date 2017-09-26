@@ -38,6 +38,7 @@ namespace Repository
 
     public class RegistrationModel
     {
+        public string profileCreateBy { get; set; }
         public object USER_ID { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
@@ -81,9 +82,9 @@ namespace Repository
 
 
 
-        public string FACEBOOK_ID { get; set; }
-        public string TWITTER_ID { get; set; }
-        public string LINKEDIN_ID { get; set; }
+        public string myFacebookId { get; set; }
+        public string myTwitterId { get; set; }
+        public string mylinkedinId { get; set; }
 
     }
 
@@ -93,7 +94,7 @@ namespace Repository
 
         public int profileId { get; set; }
 
-        public string Name { get; set; }
+        public string FULL_NAME { get; set; }
 
         public string EmailId { get; set; }
         public string VisitorEmailID { get; set; }
@@ -110,6 +111,9 @@ namespace Repository
 
         public string visitordate { get; set; }
 
+        public string MY_OCCUPTION { get; set; }
+
+        public string MY_SUB_CASTE { get; set; }
 
     }
 
@@ -132,16 +136,11 @@ namespace Repository
 
     public class UserPics
     {
-        public string USER_ID { get; set; }
-
+        public string emailId { get; set; }
         public string PicName { get; set; }
-
-        public string PicFolderPath { get; set; }
-
         public string PicFilePath { get; set; }
-
+        public string IsProfilePic { get; set; }
         public string CreatedBy { get; set; }
-        public string JsonRawData { get; set; }
     }
 
     public class GetRegistrationModel
@@ -166,13 +165,23 @@ namespace Repository
     }
 
 
+    public class GetForgetPassword
+    {
+        public string password { get; set; }
+        public string name { get; set; }
+        public string email { get; set; }
+    }
+
     public class GetUserRequestsModel
     {
-        public int @TotalPendingResponseCount { get; set; }
-        public int @TotalRequestSendCount { get; set; }
+        public int TotalPendingResponseCount { get; set; }
+        public int TotalRequestSendCount { get; set; }
 
-        public int @TotalRequestReceivedCount { get; set; }
-        public int @TotalRequestRejectCount { get; set; }
+        public int TotalRequestReceivedCount { get; set; }
+        public int TotalRequestRejectCount { get; set; }
+
+        public int TotalVisitorCount { get; set; }
+
     }
 
     public class GetMasterData
@@ -259,6 +268,8 @@ namespace Repository
         public string COUNTRY { get; set; }
         public string CITY { get; set; }
         public string address { get; set; }
+
+        public string lastLogin { get; set; }
 
     }
 }

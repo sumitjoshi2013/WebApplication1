@@ -41,6 +41,35 @@ namespace WebApi.Jwt
             return token;
         }
 
+        //If the user is not actived
+        public static string GenerateTokenFake(string username, int expireMinutes = 20)
+        {
+            var symmetricKey = Convert.FromBase64String(Secret);
+            var tokenHandler = new JwtSecurityTokenHandler();
+
+            var now = DateTime.UtcNow;
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new[]
+                        {
+                            new Claim("sub", "25041979"),
+                            new Claim("name", username),
+                            new Claim("admin", "false")
+                           // new Claim("activateduser", "false"),
+                        }),
+
+
+                Expires = now.AddMinutes(Convert.ToInt32(expireMinutes)),
+
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(symmetricKey), SecurityAlgorithms.HmacSha256Signature)
+            };
+
+            var stoken = tokenHandler.CreateToken(tokenDescriptor);
+            var token = tokenHandler.WriteToken(stoken);
+
+            return token;
+        }
+
         public static ClaimsPrincipal GetPrincipal(string token)
         {
             try

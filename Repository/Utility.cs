@@ -16,37 +16,39 @@ using System.Threading.Tasks;
 
 namespace Repository
 {
-    public static class Utility
+    public class Utility
     {
-        public static void MailSend(string emailTo, string subject, string body)
+        public bool MailSend(string emailTo, string subject, string body)
         {
             string smtpAddress = "smtp.mail.yahoo.com";
             int portNumber = 587;
             bool enableSSL = true;
-
+            bool flag = true;
             string emailFrom = "email@yahoo.com";
             string password = "abcdefg";
-            using (MailMessage mail = new MailMessage())
+            try
             {
-                mail.From = new MailAddress(emailFrom);
-                mail.To.Add(emailTo);
-                mail.Subject = subject;
-                mail.Body = body;
-                mail.IsBodyHtml = true;
-                // Can set to false, if you are sending pure text.
-
-             //   mail.Attachments.Add(new Attachment("C:\\SomeFile.txt"));
-             //   mail.Attachments.Add(new Attachment("C:\\SomeZip.zip"));
-
-                using (SmtpClient smtp = new SmtpClient(smtpAddress, portNumber))
+                using (MailMessage mail = new MailMessage())
                 {
-                    smtp.Credentials = new NetworkCredential(emailFrom, password);
-                    smtp.EnableSsl = enableSSL;
-                    smtp.Send(mail);
+                    mail.From = new MailAddress(emailFrom);
+                    mail.To.Add(emailTo);
+                    mail.Subject = subject;
+                    mail.Body = body;
+                    mail.IsBodyHtml = true;
+                    using (SmtpClient smtp = new SmtpClient(smtpAddress, portNumber))
+                    {
+                        smtp.Credentials = new NetworkCredential(emailFrom, password);
+                        smtp.EnableSsl = enableSSL;
+                        smtp.Send(mail);
+                    }
                 }
             }
+            catch(Exception exp)
+            {
+                flag = false;
+            }
 
-
+            return flag;
         }
     }
 }

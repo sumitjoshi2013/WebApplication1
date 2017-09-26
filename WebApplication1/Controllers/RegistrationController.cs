@@ -22,6 +22,15 @@ namespace WebApplication1.Controllers
             return repository.GetProfiles(con, emailid);
         }
 
+        [HttpGet, ActionName("GetForgetUser")]
+        public string ForgetUserIdToEmail(string emailid)
+        {
+            string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
+            Crud_UserProfile repository = new Crud_UserProfile();
+            return repository.GetForgetUserIdToEmail(con, emailid);
+        }
+
+
         /*
         // GET: api/Registration/5
         public GetRegistrationModel Get(string id)

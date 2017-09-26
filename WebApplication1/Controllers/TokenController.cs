@@ -24,13 +24,20 @@ namespace WebApi.Jwt.Controllers
                 var response = Request.CreateResponse(HttpStatusCode.OK, token);
                 return response;
             }
+            else
+            {
+                var token = JwtManager.GenerateTokenFake(username);
+                var response = Request.CreateResponse(HttpStatusCode.OK, token);
+                return response;
+
+            }
             throw new HttpResponseException(HttpStatusCode.Unauthorized);
         }
         public bool CheckUser(string username, string password)
         {
             bool flag = true;
             GetLoginInfo getdata = getUserLoginInfoData(username, password);
-            if(string.IsNullOrEmpty(getdata.ToString()))
+            if(getdata.Code == null)
             {
                 return flag = false;
             }
