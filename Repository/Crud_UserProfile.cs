@@ -134,14 +134,14 @@ namespace Repository
         }
 
         //
-        public List<UserProfile> GetUserPics(string conn, string emailid)
+        public List<GetUserPics> GetUserPics(string conn, string emailid)
         {
             using (IDbConnection db = new SqlConnection(conn))
             {
                 string readSp = "GetUserPics";
                 var para = new DynamicParameters();
                 para.Add("@emailid", emailid);
-                var data = db.Query<UserProfile>(readSp, para, commandType: CommandType.StoredProcedure).ToList();
+                var data = db.Query<GetUserPics>(readSp, para, commandType: CommandType.StoredProcedure).ToList();
                 return data;
             }
         }
@@ -477,6 +477,7 @@ namespace Repository
 
         public string InsertUserProfilePics(string conn, UserPics userPics)
         {
+
             string msg = string.Empty;
             SqlHelper sqlHelper = new SqlHelper(conn);
             var para = new DynamicParameters();
@@ -486,7 +487,10 @@ namespace Repository
                 para.Add("@UserEmail_ID", userPics.emailId);
                 para.Add("@PicName", userPics.PicName);
                 para.Add("@PicFilePath", userPics.PicFilePath);
-                para.Add("@IsProfilePic", userPics.IsProfilePic);
+                if(userPics.IsProfilePic)
+                    para.Add("@IsProfilePic", 1);
+                else
+                    para.Add("@IsProfilePic", 0);
                 para.Add("@CREATED_BY", userPics.CreatedBy);
                 
             }
@@ -496,8 +500,29 @@ namespace Repository
             }
             try
             {
+                var getUserPics = GetUserPics(conn, userPics.emailId);
+
+                if(getUserPics.Count() <=5)
+                {
+                    msg = "You cannot insert more then 5 pics.";
+                }
+
+                else
+                {
+                    //lamda to check the profile pic
+
+                }
+
+
                 var result = sqlHelper.ExecuteSpReturnMessage("InsertUserPics", para, null, true, null);
-                msg = "Successfully Inserted Pics.";
+                if (result == "1")
+                {
+                    msg = "Successfully Inserted Pics.";
+                }
+                else
+                {
+                    msg = "This image is already exist. Please select some other image.";
+                }
             }
             catch (Exception exp)
             {

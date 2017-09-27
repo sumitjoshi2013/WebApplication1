@@ -139,10 +139,18 @@ namespace Repository
         public string emailId { get; set; }
         public string PicName { get; set; }
         public string PicFilePath { get; set; }
-        public string IsProfilePic { get; set; }
+        public bool IsProfilePic { get; set; }
         public string CreatedBy { get; set; }
     }
 
+    public class GetUserPics
+    {
+        public string id { get; set; }
+        public string src { get; set; }
+        public string text { get; set; }
+        public string IsProfilePic { get; set; }
+       
+    }
     public class UpdateUserPics
     {
        

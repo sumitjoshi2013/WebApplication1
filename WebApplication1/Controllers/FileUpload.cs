@@ -19,11 +19,11 @@ namespace WebApplication1.Controllers
         //GetUserPics
 
         [HttpGet, ActionName("GetUserPics")]
-        public IEnumerable<UserProfile> UserPics(string emailid)
+        public IEnumerable<GetUserPics> UserPics(string emailid)
         {
             string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
             Crud_UserProfile repository = new Crud_UserProfile();
-            return repository.GetProfiles(con, emailid);
+            return repository.GetUserPics(con, emailid);
         }
 
         // GET api/values
