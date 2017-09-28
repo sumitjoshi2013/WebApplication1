@@ -492,7 +492,7 @@ namespace Repository
                     para.Add("@IsProfilePic", 1);
                 else
                     para.Add("@IsProfilePic", 0);
-                para.Add("@CREATED_BY", userPics.CreatedBy);
+                para.Add("@CREATED_BY", userPics.emailId);
                 
             }
             catch (Exception exp)
