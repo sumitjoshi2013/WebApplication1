@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -502,26 +503,26 @@ namespace Repository
             {
                 var getUserPics = GetUserPics(conn, userPics.emailId);
 
-                if(getUserPics.Count() <=5)
+                if(getUserPics.Count() >= 5) // maximum 5 pics can be uploaded
                 {
                     msg = "You cannot insert more then 5 pics.";
+                    return msg;
                 }
 
                 else
-                {
-                    //lamda to check the profile pic
+                {   //lamda to check the profile pic
+                    var userpics = getUserPics.Where(c => c.IsProfilePic.ToUpper() == "TRUE".ToUpper()).ToList();
+                    if (userpics.Count() >= 1)
+                    {
+                        msg = "You have already set the Profile Pic. Please uncheck the the profile pic status.";
+                        return msg;
+                    }
+                    else
+                    {
+                        var result = sqlHelper.ExecuteSpReturnMessage("InsertUserPics", para, null, true, null);
+                        msg = "Successfully Inserted Pics.";
+                    }
 
-                }
-
-
-                var result = sqlHelper.ExecuteSpReturnMessage("InsertUserPics", para, null, true, null);
-                if (result == "1")
-                {
-                    msg = "Successfully Inserted Pics.";
-                }
-                else
-                {
-                    msg = "This image is already exist. Please select some other image.";
                 }
             }
             catch (Exception exp)
