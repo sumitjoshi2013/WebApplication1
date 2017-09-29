@@ -37,6 +37,7 @@ namespace Repository
                 para.Add("@PASSWORD", registrationModel.password);
                 para.Add("@DOB", dt);// registrationModel.dob.date );
                 para.Add("@TIME", registrationModel.time.hh + ":" + registrationModel.time.min + ":" + registrationModel.time.sec);
+                para.Add("@Placeofbirth", registrationModel.birthplace);
                 para.Add("@MY_RELIGION", registrationModel.religion);
                 para.Add("@MY_MOTHER_TOUNG", registrationModel.mothertounge);
                 para.Add("@MY_SUB_CASTE", registrationModel.mySubCaste);

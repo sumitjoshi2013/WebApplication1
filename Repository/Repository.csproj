@@ -115,7 +115,7 @@
       <DependentUpon>my-Emarry.mdf</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Script.sql" />
+    <Content Include="Data\SQLQuery5.sql" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
