@@ -26,7 +26,14 @@ namespace WebApplication1.Controllers
             Crud_UserProfile repository = new Crud_UserProfile();
             return repository.GetShowUserProfileByUniqueId(con, userid);
         }
-        
+        // GET: api/ShowProfile/ShowUserProfileByGender
+        [HttpGet, ActionName("ShowUserProfileByGender")]
+        public IEnumerable<UserProfile> ShowUserProfileByGender(int genderId)
+        {
+            string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
+            Crud_UserProfile repository = new Crud_UserProfile();
+            return repository.ShowUserProfileByGender(con, genderId);
+        }
 
         // GET: api/ShowProfile/5
         public string Get(int id)

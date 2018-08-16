@@ -250,6 +250,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\ContactUsController.cs" />
     <Compile Include="Controllers\FileUpload.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MasterDataController.cs" />
@@ -309,6 +310,8 @@
     <Content Include="apiapp.json" />
     <None Include="Properties\PublishProfiles\mynewservicesumit - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\mynewservicesumit - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\webapiangular - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\webapiangular - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

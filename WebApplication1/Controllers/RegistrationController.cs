@@ -13,13 +13,21 @@ namespace WebApplication1.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class RegistrationController : ApiController
     {
-        // GET: api/Registration
+        // GET: api/Registration/GetAllProfiles
         [HttpGet, ActionName("GetAllProfiles")]
         public IEnumerable<UserProfile> ShowAllProfiles(string emailid)
         {
             string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
             Crud_UserProfile repository = new Crud_UserProfile();
             return repository.GetProfiles(con, emailid);
+        }
+        //GET: api/Registration/GetProfilesByEmailId
+        [HttpGet, ActionName("GetProfilesByEmailId")]
+        public UserProfile GetProfilesByEmailId(string emailid)
+        {
+            string con = ConfigurationManager.ConnectionStrings["SqlServerConnString"].ConnectionString;
+            Crud_UserProfile repository = new Crud_UserProfile();
+            return repository.GetProfilesByEmailId(con, emailid);
         }
 
         [HttpGet, ActionName("GetForgetUser")]
